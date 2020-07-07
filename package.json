@@ -1,0 +1,23 @@
+{
+  "name": "uitest2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "login": "mocha Output/Main/bootstrap.js Output/Main/login.js --timeout 100000",
+    "test": "mocha Output/Main/bootstrap.js Output/Main/main.js --timeout 1000000 --reporter mochawesome"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/jquery": "^3.5.0",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "lodash": "^4.17.15",
+    "mocha": "^8.0.1",
+    "mochawesome": "^6.1.1",
+    "puppeteer": "^5.0.0"
+  }
+}
