@@ -56,7 +56,7 @@ export function delay(time: number /* time in millisecond */): any {
   * To transition from the existence and non existence of an element
   */
 export async function checkElementExistenceToggled(name: string, selector: string, page: any) {
-    console.log(name + " element present");
+    logger.info(name + " element present");
 
     let element: any;
     let elementRemoved: boolean = false;
@@ -68,7 +68,7 @@ export async function checkElementExistenceToggled(name: string, selector: strin
             elementRemoved = true;
         }
     }
-    console.log(name + " element removed");
+    logger.info(name + " element removed");
 }
 /*
  * Generic function to input text in any field
@@ -84,9 +84,8 @@ export async function inputTextHelper(selector: string, value: string, page: any
 }
 
 async function clearTextField(selector: string, page:any) {
-    console.log("Clearing the text field")
+    logger.info("Clearing the text field")
     const textField = await page.waitFor(selector);
     await textField.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
 }
-

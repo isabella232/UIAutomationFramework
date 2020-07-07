@@ -1,35 +1,46 @@
-/// <reference path="bootstrap.ts" />
+/// <reference path="../bootstrap.ts" />
 import 'mocha';
+
+import { timers } from 'jquery'
+
 import { Button } from "../Controls/Button"
 import { Textbox } from "../Controls/Textbox"
 import { Dropdown } from "../Controls/Dropdown"
-import { Infobox } from "../Controls/Infobox";
+import { Infobox } from "../Controls/Infobox"
 import { CreateNewDropdownButton } from "../Controls/AdvancedControls/CreateNewDropdownButton"
-import * as WBSelectors from "../Resources/workloadBuilderSelector"
-import Utilities = require("../Utilities/Utils")
-import { VirtualMachinesGrid } from '../Controls/AdvancedControls/VirtualMachinesGrid';
-import { timers } from 'jquery';
+import { VirtualMachinesGrid } from '../Controls/AdvancedControls/VirtualMachinesGrid'
 
-describe('Simple Page Loading', () => {
+import * as WBSelectors from "../Resources/workloadBuilderSelector"
+import * as Utilities from "../Utilities/Utils"
+import { assert } from 'chai';
+
+
+describe('Load Migration Page', async function() {
     let page: any;
     before(async function () {
         page = await browser.newPage();
-        //await page.goto(WBSelectors.Common.wbUrlLocalHost);
         await page.goto("https://aka.ms/workloadbuilder");
+        
         let button = new Button("MigrateJBoss", WBSelectors.PreCheckTab.migrateJBossButton, page);
         await button.init();
-        await button.click();
 
-        //create generator/loader to generate code for the page through JSON/YAML injestion
-        //todo: sisatias
+        it('Should contain JBOSS Button on Page', async function(done){
+            assert(await button.exists(), "JBOSS button does not exist");
+            done();
+        });
 
-        await page1(page);
-        await page2(page);
-        await page3(page);
-        await page4(page);
-        await page5(page);
-        await page6(page);
+        describe('Load Workload Builder Page', async function(){
+            await button.click();
 
+            //create generator/loader to generate code for the page through JSON/YAML injestion
+            //todo: sisatias
+            await page1(page);
+            await page2(page);
+            await page3(page);
+            await page4(page);
+            await page5(page);
+            await page6(page);
+        });
     });
 
     after(async function () {
@@ -106,7 +117,7 @@ async function page2(page: any) {
     while(!elementPresent) {
         await Utilities.delay(10000);
         await checkPrereq.click();
-        elementPresent = await infobox.checkExistence();
+        elementPresent = await infobox.exists();
     }
     
     let nextButton = new Button("Next: VM", WBSelectors.PrereqCreationTab.nextVMButton, page);
@@ -131,7 +142,7 @@ async function page3(page: any) {
     let vmGrid = new VirtualMachinesGrid("Discovery Machines", "", page);
     await vmGrid.input("JBossEAP-06");
     await vmGrid.input("JbossEAP-10");
-    console.log("Input done");
+    logger.info("Input done");
 
     let createAssessmentButton = new Button("Create Assessment", WBSelectors.VirtualMachinesTab.createAssessmentButton, page);
     await createAssessmentButton.init();
@@ -149,7 +160,7 @@ async function page4(page: any) {
     await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, page);
 
     let infobox = new Infobox("Version Success Box", WBSelectors.DeepDiscoveryTab.successInfoBox, page);
-    await infobox.pollCheckexistence();
+    await infobox.pollexists();
 
     let nextButton = new Button("Next: Review", WBSelectors.DeepDiscoveryTab.nextReviewButton, page);
     await nextButton.init();
@@ -176,7 +187,7 @@ async function page6(page: any) {
     await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, page);
     
     let infobox = new Infobox("Instance Success Box", WBSelectors.DeployTab.successInfoBox, page);
-    await infobox.pollCheckexistence();
+    await infobox.pollexists();
 
     let nextButton = new Button("Next: CompleteMigration", WBSelectors.DeployTab.nextCompleteMigration, page);
     await nextButton.init();

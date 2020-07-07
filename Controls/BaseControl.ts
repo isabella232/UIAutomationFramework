@@ -1,6 +1,7 @@
 import Utilities = require("../Utilities/Utils")
 import { Constants } from "../Resources/workloadBuilderSelector"
-export class portalControl {
+
+export class BaseControl {
 
     /*
      * Represents the name of the element
@@ -26,6 +27,7 @@ export class portalControl {
     /*
      * Initializing the control object
      */
+
     //We have separate init function if we choose to initailize all the objects in some other manner in future. 
     public async init() {
         return await this.page.waitFor(this.selector);
@@ -34,15 +36,13 @@ export class portalControl {
     /*
      * To explicitly check if an elements exists of not with the required timeout
      */
-    public async checkExistence() {
-
+    public async exists() {
         try {
             await this.page.waitFor(this.selector, { timeout: Constants.elementExistenceTimeout });
-            console.log(this.name + " exists");
+            logger.info(this.name + " exists");
             return true;
-        }
-        catch {
-            console.log(this.name + " does not exist");
+        } catch {
+            logger.info(this.name + " does not exist");
             return false;
         }
 
@@ -52,17 +52,17 @@ export class portalControl {
      * To keep polling for the element's existense
      */
 
-    public async pollCheckexistence() {
+    public async pollexists() {
         var elementPresent: boolean = false;
-        while(!elementPresent) {
+        while (!elementPresent) {
 
             //todo: sisatia
             //Add this value of 5000 to WBSelectors
             await Utilities.delay(5000);
-            elementPresent = await this.checkExistence();
+            elementPresent = await this.exists();
         }
     }
 
-    
+
 
 }

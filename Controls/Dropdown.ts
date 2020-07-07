@@ -1,8 +1,8 @@
 import Utilities = require ("../Utilities/Utils")
-import { portalControl } from "./Controls"
+import { BaseControl } from "./BaseControl"
 import * as WBSelectors from "../Resources/workloadBuilderSelector"
 
-export class Dropdown extends portalControl{
+export class Dropdown extends BaseControl{
 
     /*
      * Represents the element
@@ -18,7 +18,7 @@ export class Dropdown extends portalControl{
     }
 
     public async loading() {
-        console.log("Dropdown loading in progress");
+        logger.info("Dropdown loading in progress");
 
         //Likely to have this selector also as user input/resource file for extensibility
         //todo: sisatia
@@ -27,18 +27,18 @@ export class Dropdown extends portalControl{
     }
 
     public async input(value: string) {
-        console.log(this.name + " dropdown selection!");
+        logger.info(this.name + " dropdown selection!");
         await this.dropdown.click();
         await this.filterValue(value);
         let dropdownItemSelector: string = "span:contains('" + value + "')";
         await Utilities.clickUsingXPath(dropdownItemSelector, this.page);
 
         //Update logging functionality
-        console.log(this.name + " dropdown Update!");
+        logger.info(this.name + " dropdown Update!");
     }
 
     private async filterValue(value: string) {
-        console.log("Filtering the value: " + value);
+        logger.info("Filtering the value: " + value);
 
         let filterBoxSelector: string = 
             WBSelectors.Common.dropdownFilterBox;

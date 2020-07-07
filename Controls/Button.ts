@@ -1,7 +1,7 @@
-import { portalControl } from "./Controls"
+import { BaseControl } from "./BaseControl"
 import Utilities = require("../Utilities/Utils")
 
-export class Button extends portalControl {
+export class Button extends BaseControl {
 
     /*
      * Represents the element
@@ -20,6 +20,6 @@ export class Button extends portalControl {
         await this.button.click();
 
         //Update logging functionality
-        console.log(this.name + " button Clicked!");
+        logger.info(this.name + " button Clicked!");
     }
 }

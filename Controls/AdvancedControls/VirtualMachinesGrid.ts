@@ -1,10 +1,10 @@
 import { Button } from "../Button"
 import { Textbox } from "../Textbox"
-import { portalControl } from "../Controls"
+import { BaseControl } from "../BaseControl"
 import * as WBSelectors from "../../Resources/workloadBuilderSelector"
 import Utilities = require ("../../Utilities/Utils")
 
-export class VirtualMachinesGrid extends portalControl {
+export class VirtualMachinesGrid extends BaseControl {
 
     constructor (name: string, selector: string, page: any){
         super(name, selector, page);
@@ -19,7 +19,7 @@ export class VirtualMachinesGrid extends portalControl {
     }
 
     private async filterValue(value: string) {
-        console.log("Filtering the value: " + value);
+        logger.info("Filtering the value: " + value);
         let filterBoxSelector: string = 
             WBSelectors.Common.vmGridFilterBox;
         await Utilities.delay(1000);

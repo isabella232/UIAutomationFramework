@@ -1,6 +1,6 @@
-import { portalControl } from "./Controls"
+import { BaseControl } from "./BaseControl"
 
-export class Infobox extends portalControl {
+export class Infobox extends BaseControl {
 
     /*
      * Represents the element

@@ -1,9 +1,9 @@
 import { Button } from "../Button"
 import { Textbox } from "../Textbox"
-import { portalControl } from "../Controls"
+import { BaseControl } from "../BaseControl"
 import * as WBSelectors from "../../Resources/workloadBuilderSelector"
 
-export class CreateNewDropdownButton extends portalControl {
+export class CreateNewDropdownButton extends BaseControl {
 
     /*
      * Represents the element

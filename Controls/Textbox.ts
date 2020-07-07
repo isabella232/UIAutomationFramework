@@ -1,7 +1,7 @@
 import Utilities = require ("../Utilities/Utils")
-import { portalControl } from "./Controls"
+import { BaseControl } from "./BaseControl"
 
-export class Textbox extends portalControl{
+export class Textbox extends BaseControl{
 
     /*
      * Represent the element
@@ -16,7 +16,7 @@ export class Textbox extends portalControl{
         await Utilities.inputTextHelper(this.selector, value, this.page, true);
 
         //Update logging functionality
-        console.log(this.name + " textbox Update!");
+        logger.info(this.name + " textbox Update!");
     }
 
 }
