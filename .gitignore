@@ -1,0 +1,6 @@
+mochawesome-report/
+node_modules/
+Output/
+user_data/
+package.json
+package-lock.json
