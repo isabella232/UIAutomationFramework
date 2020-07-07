@@ -1,7 +1,9 @@
 export {}
-const puppeteer = require('puppeteer');
-const { expect } = require('chai');
-const _ = require('lodash');
+
+import puppeteer from "puppeteer"
+import expect from "chai"
+import _ from "lodash"
+
 const globalVariables = _.pick(global, ['browser', 'expect']);
 
 declare global {
