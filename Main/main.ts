@@ -160,7 +160,7 @@ async function page4(page: any) {
     await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, page);
 
     let infobox = new Infobox("Version Success Box", WBSelectors.DeepDiscoveryTab.successInfoBox, page);
-    await infobox.waitAndCheckIfExists();
+    await infobox.waitUntilElementExists();
 
     let nextButton = new Button("Next: Review", WBSelectors.DeepDiscoveryTab.nextReviewButton, page);
     await nextButton.init();
@@ -187,7 +187,7 @@ async function page6(page: any) {
     await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, page);
     
     let infobox = new Infobox("Instance Success Box", WBSelectors.DeployTab.successInfoBox, page);
-    await infobox.waitAndCheckIfExists();
+    await infobox.waitUntilElementExists();
 
     let nextButton = new Button("Next: CompleteMigration", WBSelectors.DeployTab.nextCompleteMigration, page);
     await nextButton.init();

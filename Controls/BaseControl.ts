@@ -52,7 +52,7 @@ export class BaseControl {
      * To keep polling for the element's existense
      */
 
-    public async waitAndCheckIfExists() {
+    public async waitUntilElementExists() {
         var elementPresent: boolean = false;
         while (!elementPresent) {
             const timeoutValue = this.TIMEOUT_POLL_ELEMENTS_EXISTENCE;
