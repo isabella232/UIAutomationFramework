@@ -62,6 +62,5 @@ export class DeployTab {
 }
 
 export class Constants {
-    static readonly elementExistenceTimeout: number = 5000; /* 5 seconds */
+    
 }
-

@@ -18,6 +18,10 @@ export class BaseControl {
      */
     protected page: any;
 
+    protected TIMEOUT_ELEMENTS_EXISTENCE: number = 5000;
+
+    protected TIMEOUT_POLL_ELEMENTS_EXISTENCE: number = 5000;
+
     constructor(name: string, selector: string, page: any) {
         this.name = name;
         this.selector = selector;
@@ -38,7 +42,7 @@ export class BaseControl {
      */
     public async exists() {
         try {
-            await this.page.waitFor(this.selector, { timeout: Constants.elementExistenceTimeout });
+            await this.page.waitFor(this.selector, { timeout: this.TIMEOUT_ELEMENTS_EXISTENCE });
             logger.info(this.name + " exists");
             return true;
         } catch {
@@ -58,7 +62,7 @@ export class BaseControl {
 
             //todo: sisatia
             //Add this value of 5000 to WBSelectors
-            await Utilities.delay(5000);
+            await Utilities.delay(this.TIMEOUT_POLL_ELEMENTS_EXISTENCE);
             elementPresent = await this.exists();
         }
     }
