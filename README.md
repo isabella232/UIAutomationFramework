@@ -19,6 +19,15 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 - [TypeScript](https://www.typescriptlang.org/index.html#download-links)
 - [Mocha](https://mochajs.org/)
 
+# Setup
+
+Create .env file or run test with the below values as env variables
+
+```
+AZURE_USERNAME=<Microsoft ID>
+AZURE_PASSWORD=<Azure Password>
+```
+
 # Run Tests
 
 1. First Transpile TypeScript to CommonJS

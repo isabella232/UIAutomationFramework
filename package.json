@@ -11,13 +11,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/chai": "^4.2.11",
+    "@types/dotenv": "^8.2.0",
     "@types/jquery": "^3.5.0",
     "@types/lodash": "^4.14.157",
-    "@types/mocha": "^7.0.2",
     "@types/puppeteer": "^3.0.1",
     "minimist": "^1.2.5",
     "mochawesome": "^6.1.1",
     "puppeteer": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1"
   }
 }

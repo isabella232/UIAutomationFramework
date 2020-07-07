@@ -1,19 +1,28 @@
 /// <reference path="bootstrap.ts" />
-import { expect } from 'chai';
-import 'mocha';
+import "mocha"
+import dotenv from "dotenv"
+import { assert } from  "chai"
 
 import { msLogin } from "../Utilities/MicrosoftLoginPage"
+
+
+dotenv.config()
+
 
 describe("Login using Microsoft Credentials", () => {
     let page: any;
     
     before(async function() {
-        let args = require('minimist')(process.argv.slice(2));
-        let username: string = args['username'];
-        let password: string = args['password'];
+
+        const username: string = process.env.AZURE_USERNAME || "";
+        const password: string = process.env.AZURE_PASSWORD || "";
+
+        assert(username.length != 0, "Username cannot be empty")
+        assert(password.length != 0, "Password cannot be empty")
+    
+
         page = await browser.newPage();
         await page.goto('https://aka.ms/workloadbuilder');
-
 
         let login = new msLogin(username, password);
         await login.loginAuthPage(page);

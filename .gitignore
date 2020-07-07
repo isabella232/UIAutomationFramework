@@ -3,3 +3,4 @@ node_modules/
 Output/
 user_data/
 package-lock.json
+.env
