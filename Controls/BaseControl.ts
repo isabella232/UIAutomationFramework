@@ -1,6 +1,3 @@
-import Utilities = require("../Utilities/Utils")
-import { Constants } from "../Resources/workloadBuilderSelector"
-
 export class BaseControl {
 
     /*
@@ -49,24 +46,22 @@ export class BaseControl {
             logger.info(this.name + " does not exist");
             return false;
         }
-
     }
 
     /*
      * To keep polling for the element's existense
      */
 
-    public async pollexists() {
+    public async waitAndCheckIfExists() {
         var elementPresent: boolean = false;
         while (!elementPresent) {
+            const timeoutValue = this.TIMEOUT_POLL_ELEMENTS_EXISTENCE;
 
-            //todo: sisatia
-            //Add this value of 5000 to WBSelectors
-            await Utilities.delay(this.TIMEOUT_POLL_ELEMENTS_EXISTENCE);
+            await (new Promise(function(resolve, reject) {
+                setTimeout(resolve, timeoutValue);
+            }));
+
             elementPresent = await this.exists();
         }
     }
-
-
-
 }
