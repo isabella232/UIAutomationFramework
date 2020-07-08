@@ -4,8 +4,14 @@ import puppeteer from "puppeteer"
 import expect from "chai"
 import _ from "lodash"
 import * as winston from "winston"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const globalVariables = _.pick(global, ['browser', 'expect', 'logger']);
+
+const isHeadless = (parseInt((process.env.HEADLESS || "1")) === 1)
+
 
 declare global {
   var expect: any;
@@ -15,7 +21,7 @@ declare global {
 
 // puppeteer options
 const opts = {
-  headless: false,
+  headless: isHeadless,
   defaultViewport: null,
   userDataDir: "./user_data"
 };
@@ -35,9 +41,6 @@ before(async function () {
       new winston.transports.Console()
     ],
   });
-
-  
-
 
   global.expect = expect;
   global.browser = await puppeteer.launch(opts);

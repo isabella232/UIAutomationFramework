@@ -6,6 +6,7 @@ export class Textbox extends BaseControl{
     /*
      * Represent the element
      */
+    
     public textbox: any;
 
     constructor (name: string, selector: string, page: any){

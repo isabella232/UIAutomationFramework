@@ -26,6 +26,7 @@ Create .env file or run test with the below values as env variables
 ```
 AZURE_USERNAME=<Microsoft ID>
 AZURE_PASSWORD=<Azure Password>
+HEADLESS=<0 or 1>
 ```
 
 # Run Tests

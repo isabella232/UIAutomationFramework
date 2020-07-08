@@ -1,5 +1,4 @@
 import { BaseControl } from "./BaseControl"
-import Utilities = require("../Utilities/Utils")
 
 export class Button extends BaseControl {
 
