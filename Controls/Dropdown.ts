@@ -4,17 +4,12 @@ import * as WBSelectors from "../Resources/workloadBuilderSelector"
 
 export class Dropdown extends BaseControl{
 
-    /**
-     * Represents the element
-     */
-    public dropdown: any;  
-
     constructor (name: string, selector: string, page: any){
         super(name, selector, page);
     }
 
     public async init() {
-        this.dropdown = await super.init();
+        this.controlElement = await super.init();
     }
 
     public async loading() {
@@ -28,13 +23,13 @@ export class Dropdown extends BaseControl{
 
     public async input(value: string) {
         logger.info(this.name + " dropdown selection!");
-        await this.dropdown.click();
+        await this.controlElement.click();
         await this.filterValue(value);
         let dropdownItemSelector: string = "span:contains('" + value + "')";
         await Utilities.clickUsingXPath(dropdownItemSelector, this.page);
 
         //Update logging functionality
-        logger.info(this.name + " dropdown Update!");
+        logger.info(this.name + " Dropdown Update!");
     }
 
     private async filterValue(value: string) {

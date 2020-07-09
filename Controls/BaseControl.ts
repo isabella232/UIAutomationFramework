@@ -18,7 +18,7 @@ export class BaseControl {
     /**
      * Represents the control element object
      */
-    protected controlElement: any;
+    public controlElement: any;
 
     protected TIMEOUT_ELEMENTS_EXISTENCE: number = 5000;
 

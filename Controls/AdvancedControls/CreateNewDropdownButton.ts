@@ -4,25 +4,20 @@ import { BaseControl } from "../BaseControl"
 import * as WBSelectors from "../../Resources/workloadBuilderSelector"
 
 export class CreateNewDropdownButton extends BaseControl {
-
-    /**
-     * Represents the element
-     */
-    public createNewbutton: any;
     
     constructor (name: string, selector: string, page: any){
         super(name, selector, page);
     }
 
     public async init() {
-        this.createNewbutton = new Button(this.name, this.selector, this.page);
-        await this.createNewbutton.init();
+        this.controlElement = new Button(this.name, this.selector, this.page);
+        await this.controlElement.init();
     }
 
     public async input (value: string) {
-        this.createNewbutton = new Button(this.name, this.selector, this.page);
-        await this.createNewbutton.init();
-        await this.createNewbutton.click();
+        this.controlElement = new Button(this.name, this.selector, this.page);
+        await this.controlElement.init();
+        await this.controlElement.click();
 
         let textBoxSelector: string = WBSelectors.Common.createNewTextbox;
         let textBox = new Textbox(this.name + "textbox", textBoxSelector, this.page);

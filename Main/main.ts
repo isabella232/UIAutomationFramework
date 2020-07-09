@@ -37,8 +37,8 @@ describe('Load Migration Page', async function () {
 
         after(async function () {
             await button.click();
-        })
-    })
+        });
+    });
 
     describe('PreCheckTab', async function () {
         //await page1(page);
@@ -85,7 +85,7 @@ describe('Load Migration Page', async function () {
 
             it('Create new sisatia-wb11', async function () {
                 await Utilities.delay(500);
-                let value: string = await page.evaluate((element: any) => element.textContent, workloadDropdown.dropdown);
+                let value: string = await page.evaluate((element: any) => element.textContent, workloadDropdown.controlElement);
                 assert.equal(value, "(New) sisatia-wb11", "sisatia-wb11 successfully selected");
             });
         });
@@ -99,7 +99,7 @@ describe('Load Migration Page', async function () {
             });
 
             it('Input value sisatia-v1', async function () {
-                let value: string = await page.evaluate((element: any) => element.value, versionTextbox.textbox);
+                let value: string = await page.evaluate((element: any) => element.value, versionTextbox.controlElement);
                 assert.equal(value, "sisatia-v1", "sisatia-v1 successfully typed");
             });
         });
@@ -112,7 +112,7 @@ describe('Load Migration Page', async function () {
             });
 
             it('Input value sisatia-i1', async function () {
-                let value: string = await page.evaluate((element: any) => element.value, instanceTextbox.textbox);
+                let value: string = await page.evaluate((element: any) => element.value, instanceTextbox.controlElement);
                 assert.equal(value, "sisatia-i1", "sisatia-i1 successfully typed");
             });
 
@@ -133,7 +133,7 @@ describe('Load Migration Page', async function () {
 
             it('Resource group value', async function() {
                 await Utilities.delay(500);
-                let value: string = await page.evaluate((element: any) => element.textContent, rgDropdown.dropdown);
+                let value: string = await page.evaluate((element: any) => element.textContent, rgDropdown.controlElement);
                 assert.equal(value, "sisatia-df10", "sisatia-df10 successfully selected");
             });
 

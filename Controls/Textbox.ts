@@ -3,18 +3,12 @@ import { BaseControl } from "./BaseControl"
 
 export class Textbox extends BaseControl{
 
-    /**
-     * Represent the element
-     */
-    
-    public textbox: any;
-
     constructor (name: string, selector: string, page: any){
         super(name, selector, page);
     }
 
     public async init() {
-        this.textbox = await super.init();
+        this.controlElement = await super.init();
     }
 
     /**
@@ -32,7 +26,7 @@ export class Textbox extends BaseControl{
 
     public async isInputValid() {
         await Utilities.delay(500);
-        let validity: string = await this.page.evaluate((element:any) => element.getAttribute('data-validatable-control-validation-state'), this.textbox);
+        let validity: string = await this.page.evaluate((element:any) => element.getAttribute('data-validatable-control-validation-state'), this.controlElement);
         return validity == "valid" ? true : false;
     }
 
