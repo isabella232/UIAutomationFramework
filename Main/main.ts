@@ -14,59 +14,158 @@ import * as WBSelectors from "../Resources/workloadBuilderSelector"
 import * as Utilities from "../Utilities/Utils"
 import { assert } from 'chai';
 
-
-describe('Load Migration Page', async function() {
+//create generator/loader to generate code for the page through JSON/YAML injestion
+//todo: sisatia
+describe('Load Migration Page', async function () {
     let page: any;
     before(async function () {
         page = await browser.newPage();
         await page.goto("https://aka.ms/workloadbuilder");
-        
-        let button = new Button("MigrateJBoss", WBSelectors.PreCheckTab.migrateJBossButton, page);
-        await button.init();
-
-        it('Should contain JBOSS Button on Page', async function(done){
-            assert(await button.exists(), "JBOSS button does not exist");
-            done();
-        });
-
-        describe('Load Workload Builder Page', async function(){
-            await button.click();
-
-            //create generator/loader to generate code for the page through JSON/YAML injestion
-            //todo: sisatias
-            await page1(page);
-            await page2(page);
-            await page3(page);
-            await page4(page);
-            await page5(page);
-            await page6(page);
-        });
     });
+
+    describe('JBoss Landing Page', async function () {
+        var button: Button
+
+        before(async function () {
+            button = new Button("MigrateJBoss", WBSelectors.PreCheckTab.migrateJBossButton, page);
+            await button.init();
+        })
+
+        it('Should contain JBOSS Button on Page', async function () {
+            assert(await button.exists(), "JBOSS button does not exist");
+        });
+
+        after(async function () {
+            await button.click();
+        })
+    })
+
+    describe('PreCheckTab', async function () {
+        //await page1(page);
+        var subscriptionDropdown: Dropdown;
+        var workloadDropdown: Dropdown;
+        var workloadCreateNew: CreateNewDropdownButton;
+        var versionTextbox: Textbox;
+        var instanceTextbox: Textbox;
+        var rgDropdown: Dropdown;
+        describe('Subscripton Dropdown Exists', async function () {
+            before(async function () {
+                subscriptionDropdown = new Dropdown("Subscription Dropdown", WBSelectors.PreCheckTab.subscriptionDropdown, page);
+                await subscriptionDropdown.init();
+                await subscriptionDropdown.loading();
+                await subscriptionDropdown.input("Workload Builder BVT Testing");
+            });
+
+            it('Subscription dropdown exists', async function () {
+                assert(await subscriptionDropdown.exists() == true, "Subscription Dropdown doesn't exist");
+            })
+
+
+        });
+
+        describe('Workload Dropdown Exists', async function () {
+            before(async function () {
+                workloadDropdown = new Dropdown("Workload Dropdown", WBSelectors.PreCheckTab.workloadDropdown, page);
+                await workloadDropdown.init();
+                await workloadDropdown.loading();
+            });
+
+            it('Workload dropdown exists', async function () {
+                assert(await workloadDropdown.exists() == true, "Workload Dropdown doesn't exist");
+            })
+
+        });
+
+        describe('Workload Create New Selection', async function () {
+            before(async function () {
+                workloadCreateNew = new CreateNewDropdownButton("Create New Workload", WBSelectors.PreCheckTab.workloadCreateNewButton, page);
+                await workloadCreateNew.init();
+                await workloadCreateNew.input("sisatia-wb11");
+            });
+
+            it('Create new sisatia-wb11', async function () {
+                await Utilities.delay(500);
+                let value: string = await page.evaluate((element: any) => element.textContent, workloadDropdown.dropdown);
+                assert.equal(value, "(New) sisatia-wb11", "sisatia-wb11 successfully selected");
+            });
+        });
+
+        describe('Version Textbox', async function () {
+            before(async function () {
+                await Utilities.delay(1000);
+                versionTextbox = new Textbox("Version Textbox", WBSelectors.PreCheckTab.versionTextbox, page);
+                await versionTextbox.init();
+                await versionTextbox.input("sisatia-v1");
+            });
+
+            it('Input value sisatia-v1', async function () {
+                let value: string = await page.evaluate((element: any) => element.value, versionTextbox.textbox);
+                assert.equal(value, "sisatia-v1", "sisatia-v1 successfully typed");
+            });
+        });
+
+        describe('Instance Textbox', async function () {
+            before(async function () {
+                instanceTextbox = new Textbox("Instance Textbox", WBSelectors.PreCheckTab.instanceTextbox, page);
+                await instanceTextbox.init();
+                await instanceTextbox.input("sisatia-i1");
+            });
+
+            it('Input value sisatia-i1', async function () {
+                let value: string = await page.evaluate((element: any) => element.value, instanceTextbox.textbox);
+                assert.equal(value, "sisatia-i1", "sisatia-i1 successfully typed");
+            });
+
+            it('Input validity', async function () {
+                let validity: boolean = await instanceTextbox.isInputValid();
+                console.log(validity);
+                assert.isTrue(validity, "instance textbox input is valid");
+            });
+        });
+
+        describe('Resource Group Selection', async function () {
+            before(async function () {
+                rgDropdown = new Dropdown("ResourceGroup Dropdown", WBSelectors.PreCheckTab.resourceGroupDropdown, page);
+                await rgDropdown.init();
+                await rgDropdown.loading();
+                await rgDropdown.input("sisatia-df10");
+            });
+
+            it('Resource group value', async function() {
+                await Utilities.delay(500);
+                let value: string = await page.evaluate((element: any) => element.textContent, rgDropdown.dropdown);
+                assert.equal(value, "sisatia-df10", "sisatia-df10 successfully selected");
+            });
+
+        });
+        
+        after(async function() {
+            let nextButton = new Button("Next Migration Package", WBSelectors.PreCheckTab.nextMigrationPackageButton, page);
+            await nextButton.init();
+            await nextButton.click();
+        });
+
+    })
+
+
+    // await page2(page);
+    // await page3(page);
+    // await page4(page);
+    // await page5(page);
+    // await page6(page);
 
     after(async function () {
         //await page.close();
     })
 
-    it('Not Implemented', async function () {
+    // it('Not Implemented', async function () {
 
-    });
+    // });
 
 });
 
 async function page1(page: any) {
     //page 1
-    let subscriptionDropdown = new Dropdown("Subscription Dropdown", WBSelectors.PreCheckTab.subscriptionDropdown, page);
-    await subscriptionDropdown.init();
-    await subscriptionDropdown.loading();
-    await subscriptionDropdown.input("Workload Builder BVT Testing");
-
-    let workloadDropdown = new Dropdown("Workload Dropdown", WBSelectors.PreCheckTab.workloadDropdown, page);
-    await workloadDropdown.init();
-    await workloadDropdown.loading();
-
-    let workloadCreateNew = new CreateNewDropdownButton("Create New Workload", WBSelectors.PreCheckTab.workloadCreateNewButton, page);
-    await workloadCreateNew.init();
-    await workloadCreateNew.input("sisatia-wb10");
 
     await Utilities.delay(1000);
     let versionTextbox = new Textbox("Version Textbox", WBSelectors.PreCheckTab.versionTextbox, page);
@@ -110,16 +209,16 @@ async function page2(page: any) {
     let checkPrereq = new Button("Check Prereq", WBSelectors.PrereqCreationTab.checkPrerequisiteButton, page);
     await checkPrereq.init();
     await checkPrereq.click();
-    
+
     let infobox = new Infobox("Prereq Success Box", WBSelectors.PrereqCreationTab.successInfoBox, page);
-    
+
     var elementPresent: boolean = false;
-    while(!elementPresent) {
+    while (!elementPresent) {
         await Utilities.delay(10000);
         await checkPrereq.click();
         elementPresent = await infobox.exists();
     }
-    
+
     let nextButton = new Button("Next: VM", WBSelectors.PrereqCreationTab.nextVMButton, page);
     await nextButton.init();
     await nextButton.click();
@@ -185,7 +284,7 @@ async function page5(page: any) {
 async function page6(page: any) {
     //page 6
     await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, page);
-    
+
     let infobox = new Infobox("Instance Success Box", WBSelectors.DeployTab.successInfoBox, page);
     await infobox.waitUntilElementExists();
 
