@@ -4,7 +4,7 @@ import * as WBSelectors from "../Resources/workloadBuilderSelector"
 
 export class Dropdown extends BaseControl{
 
-    /*
+    /**
      * Represents the element
      */
     public dropdown: any;  

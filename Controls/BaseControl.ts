@@ -1,19 +1,24 @@
 export class BaseControl {
 
-    /*
+    /**
      * Represents the name of the element
      */
     protected name: string
 
-    /*
+    /**
      * Represents the selector for the element
      */
     protected selector: string;
 
-    /*
+    /**
      * Represents the page object for the element
      */
     protected page: any;
+
+    /**
+     * Represents the control element object
+     */
+    protected controlElement: any;
 
     protected TIMEOUT_ELEMENTS_EXISTENCE: number = 5000;
 
@@ -25,16 +30,17 @@ export class BaseControl {
         this.page = page;
     }
 
-    /*
+    /**
      * Initializing the control object
      */
 
     //We have separate init function if we choose to initailize all the objects in some other manner in future. 
     public async init() {
-        return await this.page.waitFor(this.selector);
+        this.controlElement = await this.page.waitFor(this.selector);
+        return this.controlElement;
     }
 
-    /*
+    /**
      * To explicitly check if an elements exists of not with the required timeout
      */
     public async exists() {
@@ -48,7 +54,7 @@ export class BaseControl {
         }
     }
 
-    /*
+    /**
      * To keep polling for the element's existense
      */
 

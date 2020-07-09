@@ -8,12 +8,12 @@ const signInButtonSelector: string = '#submitButton';
 
 export class msLogin {
 
-    /*
+    /**
      * Represents the username
      */
     private username: string;
 
-    /*
+    /**
      * Represents the password
      */
     private password: string;

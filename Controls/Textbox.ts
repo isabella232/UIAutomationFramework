@@ -3,7 +3,7 @@ import { BaseControl } from "./BaseControl"
 
 export class Textbox extends BaseControl{
 
-    /*
+    /**
      * Represent the element
      */
     
@@ -17,7 +17,7 @@ export class Textbox extends BaseControl{
         this.textbox = await super.init();
     }
 
-    /*
+    /**
      * Provide input to the text field
      */
     public async input(value: string) {
@@ -26,7 +26,7 @@ export class Textbox extends BaseControl{
         //Update logging functionality
         logger.info(this.name + " textbox Update!");
     }
-    /*
+    /**
      * Provide input to the text field
      */
 

@@ -2,7 +2,7 @@ import { BaseControl } from "./BaseControl"
 
 export class Button extends BaseControl {
 
-    /*
+    /**
      * Represents the element
      */
     public button: any;

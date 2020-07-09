@@ -1,4 +1,4 @@
-/*
+/**
  * Function to return the xpath of an element
  */
 
@@ -33,7 +33,7 @@ export async function getXPath(selector: string, page: any) {
     return xPath;
 }
 
-/*
+/**
  * Function to click the element using XPath
  */
 export async function clickUsingXPath(selector: string, page: any) {
@@ -43,16 +43,16 @@ export async function clickUsingXPath(selector: string, page: any) {
     await item[0].click();
 }
 
-/*
+/**
  * Function to add the desired delay
  */
-export function delay(time: number /* time in millisecond */): any {
+export function delay(time: number /** time in millisecond */): any {
     return new Promise(function(resolve) { 
         setTimeout(resolve, time)
     });
  }
 
- /*
+ /**
   * To transition from the existence and non existence of an element
   */
 export async function checkElementExistenceToggled(name: string, selector: string, page: any) {
@@ -70,7 +70,7 @@ export async function checkElementExistenceToggled(name: string, selector: strin
     }
     logger.info(name + " element removed");
 }
-/*
+/**
  * Generic function to input text in any field
  */
 export async function inputTextHelper(selector: string, value: string, page: any, xPathClickRequired?: boolean) {

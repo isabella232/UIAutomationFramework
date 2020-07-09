@@ -5,7 +5,7 @@ import * as WBSelectors from "../../Resources/workloadBuilderSelector"
 
 export class CreateNewDropdownButton extends BaseControl {
 
-    /*
+    /**
      * Represents the element
      */
     public createNewbutton: any;
