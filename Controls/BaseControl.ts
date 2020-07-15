@@ -3,7 +3,7 @@ export class BaseControl {
     /**
      * Represents the name of the element
      */
-    protected name: string
+    public name: string
 
     /**
      * Represents the selector for the element
@@ -57,7 +57,6 @@ export class BaseControl {
     /**
      * To keep polling for the element's existense
      */
-
     public async waitUntilElementExists() {
         var elementPresent: boolean = false;
         while (!elementPresent) {
