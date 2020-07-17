@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "login": "mocha Output/bootstrap.js Output/Main/login.js --timeout 100000",
-    "test": "tsc && HEADLESS=0 mocha Output/bootstrap.js Output/Main/main.js --timeout 30000 --reporter mochawesome"
+    "test": "tsc && HEADLESS=0 mocha Output/bootstrap.js Output/Main/main.js --timeout 30000 --reporter mochawesome --bail"
   },
   "author": "",
   "license": "ISC",
