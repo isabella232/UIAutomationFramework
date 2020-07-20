@@ -16,4 +16,9 @@ export class Button extends BaseControl {
         //Update logging functionality
         logger.info(this.name + " button Clicked!");
     }
+
+    public async isDisabled() {
+        let isDisabled: boolean = await this.page.evaluate((element: any) => element.ariaDisabled);
+        return isDisabled;
+    }
 }

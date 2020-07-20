@@ -23,4 +23,14 @@ export class TestButton extends TestBaseControl {
         await super.testExists(this.button);
     }
 
+    public async testIsDisabled(checkForDisabled: boolean) {
+        let isDisabled: boolean = await this.button.isDisabled();
+        if (checkForDisabled) {
+            assert.isTrue(isDisabled, "The button is enabled")
+        } else {
+            assert.isFalse(!isDisabled, "The button is disabled");
+        }
+
+    }
+
 }
