@@ -38,7 +38,10 @@ before(async function () {
       )
     ),
     transports: [
-      new winston.transports.Console()
+      new (winston.transports.File)({
+        filename: 'UITesting.log',
+        level: 'info'
+      })
     ],
   });
 
