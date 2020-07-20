@@ -2,7 +2,7 @@ import 'mocha';
 import { assert } from 'chai';
 import { Dropdown } from "../Controls/Dropdown"
 import { TestBaseControl } from "./BaseControl"
-
+import * as Utilities from "../Utilities/Utils"
 export class TestDropdown extends TestBaseControl{
 
     /**
@@ -24,11 +24,11 @@ export class TestDropdown extends TestBaseControl{
     }
 
     public async testInput(input: string){
+        await Utilities.delay(500);
         /* Describe doesn't have the context of this, but only function variables, hence 
-        added page/dropdown */
+        added page + dropdown */
         let page: any = this.page;
         let dropdown: Dropdown = this.dropdown;
-        
         describe(dropdown.name + ' Dropdown Input', async function() {
             it('Input Test', async function() {
                 let value: string = await page.evaluate((element: any) => element.textContent, dropdown.controlElement);

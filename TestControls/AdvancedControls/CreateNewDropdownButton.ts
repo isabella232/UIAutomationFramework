@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { CreateNewDropdownButton } from "../../Controls/AdvancedControls/CreateNewDropdownButton"
 import { TestBaseControl } from "./../BaseControl"
 import { TestDropdown } from '../Dropdown';
-
+import * as Utilities from "../../Utilities/Utils"
 export class TestCreateNewDropdownButton extends TestBaseControl{
 
     /**
@@ -25,7 +25,7 @@ export class TestCreateNewDropdownButton extends TestBaseControl{
     }
 
     public async testInput(input: string, dropdown: TestDropdown){
-        //Now run a test case to ensure
+        await Utilities.delay(500);
         await dropdown.testInput(input);
     }
 

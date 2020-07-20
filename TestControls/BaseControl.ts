@@ -9,14 +9,10 @@ export class TestBaseControl extends BaseControl{
     }
 
     protected async testExists(control: BaseControl) {
-        describe('Element Exists', async function() {
-            before(async function() {
-                console.log("Inside before of test exists");
-            })
-            it('Element Exists', async function () {
+        describe(control.name + ' element exists', async function() {
+            it('Element exists', async function () {
                 let result = await control.exists();
                 assert.isTrue(result, control.name + " does not exist");
-
             });
         })
     };
