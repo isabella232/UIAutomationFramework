@@ -5,6 +5,7 @@ import expect from "chai"
 import _ from "lodash"
 import * as winston from "winston"
 import dotenv from "dotenv"
+import { YamlParser } from "./YamlParser/YamlParser"
 
 dotenv.config()
 
@@ -47,6 +48,8 @@ before(async function () {
 
   global.expect = expect;
   global.browser = await puppeteer.launch(opts);
+  var parser: YamlParser = new YamlParser();
+  parser.RenderTestTemplates();
 });
 
 // close browser
