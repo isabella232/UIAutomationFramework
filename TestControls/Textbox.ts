@@ -26,20 +26,6 @@ export class TestTextbox extends TestBaseControl {
     }
 
     public async testExists() {
-        //let button: Button = this.button;
-        // describe('Button Exists', async function () {
-        //     // it('Dummy test', function(done) {
-        //     //     assert.equal(1,1,"Dummy Message");
-        //     //     done();
-        //     // })
-
-        //     // it('Element Exists', async function () {
-        //     //     let result = await button.exists();
-        //     //     result = false;
-        //     //     assert.isTrue(result, button.name + " does not exist");
-        //     // })
-        // });
-
         await super.testExists(this.textbox);
     }
 
