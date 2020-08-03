@@ -18,7 +18,7 @@ export class Button extends BaseControl {
     }
 
     public async isDisabled() {
-        let isDisabled: boolean = await this.page.evaluate((element: any) => element.ariaDisabled);
+        let isDisabled: boolean = await this.page.evaluate((element: any) => element.ariaDisabled, this.controlElement);
         return isDisabled;
     }
 }
