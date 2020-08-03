@@ -57,9 +57,17 @@ export class BaseControl {
     /**
      * To keep polling for the element's existense
      */
-    public async waitUntilElementExists() {
+    public async waitUntilElementExists(duration: number = 3600 /* 60 minutes by default */) {
         var elementPresent: boolean = false;
+        let startTime: Date = new Date();
         while (!elementPresent) {
+            let currentTime: Date = new Date();
+            let timeDiff: number = (currentTime.getTime() - startTime.getTime())/1000;
+            
+            if(timeDiff > duration) {
+                break;
+            }
+
             const timeoutValue = this.TIMEOUT_POLL_ELEMENTS_EXISTENCE;
 
             await (new Promise(function(resolve, reject) {
@@ -67,6 +75,12 @@ export class BaseControl {
             }));
 
             elementPresent = await this.exists();
+        }
+
+        if (!elementPresent) {
+            logger.error(this.name + " not found!");
+            //stop the program here
+            //todo: sisatia
         }
     }
 }
