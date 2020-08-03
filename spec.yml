@@ -1,0 +1,121 @@
+#First element has to be defining the goto page
+
+###############################################
+##PAGE 1 - PreCheck Tab
+- name: Initialization
+  goto: "https://aka.ms/workloadbuilder"
+  projectName: WorkloadBuilderProject
+
+- name: Click the JBoss Migrate Button
+  control: 
+    type: button
+    name: JBossMigrate Button
+    selector: '[title=\"Migrate JBoss\"]'
+    action: 
+      after:
+        click: "yes"
+    test:
+      testExists: "yes"
+
+- name: Subscription Dropdown Testing
+  control: 
+    type: dropdown
+    name: Subscription Dropdown
+    selector: '[aria-label=\"Subscription Dropdown\"]'
+    action: 
+      before:
+        input: "Workload Builder BVT Testing"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "Workload Builder BVT Testing"
+
+- name: Wait for workload dropdown to load
+  control:
+    type: dropdown
+    name: WorkloadDropdownLoad
+    selector: '[aria-label=\"Workload Dropdown\"]'
+    action:
+      before:
+        waitLoading: "yes"
+
+- name: Create New WorkloadBuilder project
+  control: 
+    type: createNewDropdownButton
+    name: CreateNewWB
+    selector: '.fxt-workload-create'
+    dropdownSelector: '[aria-label=\"Workload Dropdown\"]'
+    action: 
+      before:
+        input: "sisatia-ui-wb"
+    test:
+      testExists: "yes"
+
+- name: Test input of workload dropdown
+  control:
+    type: dropdown
+    name: Workload Dropdown
+    selector: '[aria-label=\"Workload Dropdown\"]'
+    test:
+      testExists: "yes"
+      testInput: "(New) sisatia-ui-wb"
+
+    
+- name: Add a 500 ms delay for new elements to show up
+  utility: 
+    type: delay
+    name: AddDelay
+    duration: 500
+
+- name: Provide input to Version Textbox
+  control:
+    type: textbox
+    name: VersionTextbox
+    selector: '[aria-label=\"Version Textbox\"]'
+    action:
+      before:
+        input: "v1"
+      after: 
+        ...
+    test:
+      testExists: "yes"
+      testInput: "v1"
+
+- name: Provide input to Instance Textbox
+  control:
+    type: textbox
+    name: InstanceTextbox
+    selector: '[aria-label=\"Instance Textbox\"]'
+    action:
+      before:
+        input: "i1"
+    test:
+      testExists: "yes"
+      testInput: "i1"
+
+- name: Resource Group Dropdown Testing
+  control: 
+    type: dropdown
+    name: Resource Dropdown
+    selector: '[aria-label=\"Create new or use existing ResoureceGroup dropdown\"]'
+    action: 
+      before:
+        input: "sisatia-df10"
+    test:
+      testExists: "yes"
+      testInput: "sisatia-df10"
+
+- name: Click the next button
+  control: 
+    type: button
+    name: NextPrereqButton
+    selector: '[title=\"Next: Migration Package\"]'
+    action: 
+      after:
+        click: "yes"
+    test:
+      testIsDisabled: "no"
+      testExists: "yes"
+
+###############################################
+##PAGE 2 - Prereq Creation Tab

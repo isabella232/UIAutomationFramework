@@ -2,7 +2,7 @@ import { BaseControl } from "../Controls/BaseControl"
 import 'mocha';
 import { assert, expect } from 'chai';
 
-export class TestBaseControl extends BaseControl{
+export class TestBaseControl extends BaseControl {
 
     constructor(name: string, selector: string, page: any) {
         super(name, selector, page);
