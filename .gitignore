@@ -5,3 +5,4 @@ user_data/
 package-lock.json
 .env
 UITesting.log
+RenderedTestTemplates
