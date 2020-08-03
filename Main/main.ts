@@ -8,7 +8,7 @@ import {YamlParser} from "../YamlParser/YamlParser"
 //todo: sisatia
 describe('Load Starting page', async function () {
     var page: any;
-    var parser: YamlParser = new YamlParser(page);
+    var parser: YamlParser = new YamlParser();
     before(async function () {
         page = await browser.newPage();
         await parser.RenderTestTemplates();

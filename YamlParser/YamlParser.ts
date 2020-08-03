@@ -13,14 +13,11 @@ export class YamlParser {
 
     public projectName: any;
 
-    public page: any;
-
     private importDict: any;
 
     private importStatements: string;
 
-    constructor(page: any) {
-        this.page = page;
+    constructor() {
         this.importDict = {};
         this.importStatements = `import 'mocha';\nimport { BaseTestClass } from "./BaseTestClass"`
         try {
