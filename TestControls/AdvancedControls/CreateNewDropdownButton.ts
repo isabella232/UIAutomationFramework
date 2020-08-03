@@ -24,9 +24,4 @@ export class TestCreateNewDropdownButton extends TestBaseControl{
         await super.testExists(this.createNew);
     }
 
-    public async testInput(input: string, dropdown: TestDropdown){
-        await Utilities.delay(500);
-        await dropdown.testInput(input);
-    }
-
 }
