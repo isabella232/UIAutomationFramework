@@ -1,10 +1,12 @@
 import { DelayParser } from "./Utilities/DelayParser";
 import { WaitUntilElementExistsParser } from "./Utilities/WaitUntilElementExistsParser";
+import { CheckElementExistenceToggledParser } from "./Utilities/CheckElementExistenceToggledParser"
 
 const UTILITIES: {[key: string] :any} = {
     //<ControlName> : <ControlParser>
     "delay": DelayParser,
-    "waitUntilElementExistsParser": WaitUntilElementExistsParser
+    "waitUntilElementExists": WaitUntilElementExistsParser,
+    "checkElementExistenceToggled": CheckElementExistenceToggledParser
 }
 
 export class UtilityParserFactory {
