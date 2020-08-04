@@ -105,7 +105,7 @@
       testExists: "yes"
       testInput: "sisatia-df10"
 
-- name: Click the next button
+- name: Next Prereq Button
   control: 
     type: button
     name: NextPrereqButton
@@ -119,3 +119,48 @@
 
 ###############################################
 ##PAGE 2 - Prereq Creation Tab
+
+- name: Check for UI shield to be toggled
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: Storage Account Dropdown
+  control: 
+    type: dropdown
+    name: StorageAccountDropdown
+    selector: '[aria-label=\"Storage Dropdown\"]'
+    action: 
+      before:
+        input: "wblsa79128152339"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "wblsa79128152339"
+
+- name: KeyVault Dropdown
+  control: 
+    type: dropdown
+    name: KeyvaultDropdown
+    selector: '[aria-label=\"KeyVault Dropdown\"]'
+    action: 
+      before:
+        input: "wbkv79128152339"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "wbkv79128152339"
+
+- name: ApplicationInsights Dropdown
+  control: 
+    type: dropdown
+    name: ApplicationInsightsDropdown
+    selector: '[aria-label=\"ApplicationInsights Dropdown\"]'
+    action: 
+      before:
+        input: "wbappinsights791281523"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "wbappinsights791281523"

@@ -48,8 +48,6 @@ before(async function () {
 
   global.expect = expect;
   global.browser = await puppeteer.launch(opts);
-  var parser: YamlParser = new YamlParser();
-  parser.RenderTestTemplates();
 });
 
 // close browser
