@@ -1,6 +1,7 @@
 import { ButtonParser } from "./Controls/ButtonParser";
 import { DropdownParser } from "./Controls/DropdownParser";
 import { TextboxParser } from "./Controls/TextboxParser";
+import { InfoboxParser } from "./Controls/InfoboxParser";
 import { CreateNewDropdownButtonParser } from "./Controls/CreateNewDropdownButtonParser"
 
 const CONTROLS: {[key: string] :any} = {
@@ -8,6 +9,7 @@ const CONTROLS: {[key: string] :any} = {
     "button": ButtonParser,
     "dropdown": DropdownParser,
     "textbox": TextboxParser,
+    "infobox": InfoboxParser,
     "createNewDropdownButton": CreateNewDropdownButtonParser
 }
 

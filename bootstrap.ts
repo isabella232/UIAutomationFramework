@@ -8,7 +8,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const globalVariables = _.pick(global, ['browser', 'expect', 'logger']);
+const globalVariables = _.pick(global, ['browser', 'expect', 'logger', 'page']);
 
 const isHeadless = (parseInt((process.env.HEADLESS || "1")) === 1)
 
@@ -17,6 +17,7 @@ declare global {
   var expect: any;
   var browser: any;
   var logger: any;
+  var page: any;
 }
 
 // puppeteer options
