@@ -6,4 +6,5 @@ package-lock.json
 .env
 UITesting.log
 RenderedTestTemplates
-Tests/
+Tests/*
+!Tests/InitTest.ts
