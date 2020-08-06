@@ -3,6 +3,7 @@ import { DropdownParser } from "./Controls/DropdownParser";
 import { TextboxParser } from "./Controls/TextboxParser";
 import { InfoboxParser } from "./Controls/InfoboxParser";
 import { CreateNewDropdownButtonParser } from "./Controls/CreateNewDropdownButtonParser"
+import { VirtualMachinesGridParser } from "./Controls/VirtualMachinesGridParser"
 
 const CONTROLS: {[key: string] :any} = {
     //<ControlName> : <ControlParser>
@@ -10,7 +11,8 @@ const CONTROLS: {[key: string] :any} = {
     "dropdown": DropdownParser,
     "textbox": TextboxParser,
     "infobox": InfoboxParser,
-    "createNewDropdownButton": CreateNewDropdownButtonParser
+    "createNewDropdownButton": CreateNewDropdownButtonParser,
+    "virtualMachinesGrid": VirtualMachinesGridParser
 }
 
 export class ControlParserFactory {

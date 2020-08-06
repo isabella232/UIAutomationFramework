@@ -176,11 +176,11 @@
     test:
       testExists: "yes"
 
-- name: Add a 120*1000 ms delay for new elements to show up
+- name: Add a 90*1000 ms delay for new elements to show up
   utility: 
     type: delay
     name: AddDelay
-    duration: 120000
+    duration: 90000
 
 - name: Check The Prereq Button
   control: 
@@ -198,4 +198,92 @@
     type: waitUntilElementExists
     name: SuccessInfoBox
     selector: '.fxc-infoBox-container.fxs-portal-border.fxc-infobox-size-normal.fxt-infoBox-container.fxc-infoBox-Success'
+
+- name: NextVM Tab
+  control: 
+    type: button
+    name: NextVMTab
+    selector: '[title=\"Next: Select VMs for Migration\"]'
+    action: 
+      after:
+        click: "yes"
+    test:
+      testExists: "yes"
+
+# ##############################################
+# #PAGE 3 - VM Tab
+
+- name: MigrationProject Dropdown
+  control: 
+    type: dropdown
+    name: MigrationProject
+    selector: '[aria-label=\"Migration Dropdown\"]'
+    action: 
+      before:
+        input: "wb-common-test-wbvcenter-scus (wb-common-test-migration-canary-scus-wbvcenter)"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "wb-common-test-wbvcenter-scus (wb-common-test-migration-canary-scus-wbvcenter)"
+
+- name: Appliance Dropdown
+  control: 
+    type: dropdown
+    name: ApplianceDropdown
+    selector: '[aria-label=\"Appliance Dropdown\"]'
+    action: 
+      before:
+        input: "wbappliance0"
+        waitLoading: "yes"
+    test:
+      testExists: "yes"
+      testInput: "wbappliance0"
+
+- name: Check for UI shield to be toggled
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: Virtual Machine Selection
+  control:
+    type: virtualMachinesGrid
+    name: vmgrid
+    selector: ""
+    action:
+      before:
+        input: JbossEAP-16
+
+
+- name: CreateAssessment
+  control: 
+    type: button
+    name: CreateAssessmentButton
+    selector: '[title=\"Create Assessment\"]'
+    action: 
+      after:
+        click: "yes"
+    test:
+      testExists: "yes"
+
+- name: Check for UI shield to be toggled
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: NextAssessment
+  control: 
+    type: button
+    name: NextAssessmentButton
+    selector: '[title=\"Next: Deep-Discovery\"]'
+    action: 
+      after:
+        click: "yes"
+    test:
+      testExists: "yes"
+
+
+
+
 
