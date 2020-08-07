@@ -3,12 +3,13 @@ import * as fs from 'fs';
 import { ControlParserFactory } from "./ControlParserFactory"
 import { BaseParser } from './BaseParser';
 import { UtilityParserFactory } from './UtilityParserFactory';
+import {ControlDataBlock, ControlParser, UtilityDataBlock, UtilityParser, Action, Block} from "./DataTypes"
 
 export class YamlParser {
 
-    private data: any
+    private data: any;
 
-    public gotoPage: any
+    public gotoPage: any;
 
     public projectName: any;
 
@@ -50,7 +51,7 @@ export class YamlParser {
 
     private async initUtility(testName: string, utilityBlock: Record<UtilityParser, any>, currentTestNumber: string, nextTestNumber: string | undefined) {
         let utilityType: string = utilityBlock.type;
-        let data: any = {
+        let data: UtilityDataBlock = {
             testName: testName,
             utilityName: utilityBlock.name.replace(/ /g, ''),
             selector: utilityBlock.selector,
@@ -69,7 +70,7 @@ export class YamlParser {
 
         //todo: sisatia
         //Make an interface for data type for sanity check
-        let data: any = {
+        let data: ControlDataBlock = {
             testName: testName,
             controlName: controlBlock.name.replace(/ /g, ''),
             selector: controlBlock.selector,
@@ -96,33 +97,4 @@ export class YamlParser {
 
     }
 
-}
-
-
-//General for all controls
-enum ControlParser {
-    Type = "type",
-    Name = "name",
-    Selector = "selector",
-    Action = "action",
-    Test = "test"
-}
-
-enum UtilityParser {
-    Type = "type",
-    Name = "name",
-    Selector = "selector",
-    Duration = "duration"
-}
-
-enum Action {
-    Before = "before",
-    After = "after"
-}
-
-enum Block {
-    Name = "name",
-    Control = "control",
-    Utility = "utility"
-    /* Add more fields, as and when required, such as delay */
 }

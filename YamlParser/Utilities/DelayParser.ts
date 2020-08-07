@@ -2,10 +2,11 @@
 //todo: sisatia abgopal
 
 import { BaseParser } from "../BaseParser"
+import { UtilityDataBlock } from "../DataTypes"
 
 export class DelayParser extends BaseParser {
 
-    constructor(data: any) {
+    constructor(data: UtilityDataBlock) {
         let templatePath: string = "Templates/DelayTemplate.ejs.t";
         super(templatePath, data);
     }
