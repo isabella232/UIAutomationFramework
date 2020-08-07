@@ -1,5 +1,3 @@
-//todo: sisatia
-//this file shall be later converted to resx and d.ts file in visual studio for better readability if required
 
 export class Common {
     static readonly wbUrl: string = 'https://aka.ms/workloadbuilder'

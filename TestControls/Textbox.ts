@@ -17,11 +17,12 @@ export class TestTextbox extends TestBaseControl {
 
     public async init() {
 
-        //todo: sisatia
-        //Add exists check here itself. Since you can't perform init without it existing in the first place
+        //Question: Add exists check here itself. Since you can't perform init without it existing in the first place
         //And this is a test class only
 
         //Think if we need to do that here, do we? 
+
+        //Answer: seperate testExists is better for readability purpose.
         await this.textbox.init();
     }
 
