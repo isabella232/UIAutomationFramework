@@ -1,5 +1,6 @@
 /// <reference path="../bootstrap.ts" />
 import { BaseControl } from "../Controls/BaseControl";
+import { assert } from "chai"
 var <%= utilityName %>: BaseControl;
 describe("<%= testName %>", async function () {
     before(async function () {
@@ -10,7 +11,10 @@ describe("<%= testName %>", async function () {
 
     it('Run Tests', async function () {
         /* All test cases to be performed */
-        await <%= utilityName %>.waitUntilElementExists(<%= duration %>);
+        let elementPresent: boolean = await <%= utilityName %>.waitUntilElementExists(<%= duration %>);
+        if (!elementPresent) {
+            assert.fail("<%= utilityName %> not present");        
+        }
     })
 
     <%_ if (nextTestPath) { _%>

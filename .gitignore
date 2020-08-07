@@ -5,6 +5,5 @@ user_data/
 package-lock.json
 .env
 UITesting.log
-RenderedTestTemplates
 Tests/*
 !Tests/InitTest.ts

@@ -79,8 +79,8 @@ export class BaseControl {
 
         if (!elementPresent) {
             logger.error(this.name + " not found!");
-            //stop the program here
-            //todo: sisatia
         }
+
+        return elementPresent;
     }
 }
