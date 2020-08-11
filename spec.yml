@@ -17,6 +17,10 @@
     test:
       testExists: "yes"
 
+# - name: Custom Test
+#   custom: 
+#     customTestPath: "../../testing123.ts"
+
 - name: Subscription Dropdown Testing
   control: 
     type: dropdown
