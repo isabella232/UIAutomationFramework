@@ -13,11 +13,9 @@ export class YamlParser {
 
     public projectName: any;
 
-    private importStatements: string;
-
     constructor() {
-        this.importStatements = `import 'mocha';\nimport { BaseTestClass } from "./BaseTestClass"`
         try {
+            //logger.info("Initiate generation of test files");
             let fileContents = fs.readFileSync('/Users/simratsatia/Desktop/UIAutomationFramework/spec.yml', 'utf8');
             this.data = yaml.safeLoad(fileContents);
             this.gotoPage = this.data[0]["goto"];
@@ -33,12 +31,11 @@ export class YamlParser {
         //await this.initTestTemplate();
 
         let i: number = 1;
-        let lexNumbers: Array<string> = this.genLexString(this.data.length);
         while (i < this.data.length) {
             let block: Record<Block, any> = this.data[i];
             let testName: string = block.name;
-            let currentTestNumber: string = lexNumbers[i-1];
-            let nextTestNumber: string | undefined = (i < this.data.length - 1) ? lexNumbers[i] : undefined;
+            let currentTestNumber: string = i + "";
+            let nextTestNumber: string | undefined = (i < this.data.length - 1) ? (i + 1) + "": undefined;
 
             if (block.control) {
                 await this.initControl(testName, block.control, currentTestNumber, nextTestNumber);
@@ -68,8 +65,6 @@ export class YamlParser {
         let controlType: string = controlBlock.type;
         let actionBlock: Record<Action, any> = controlBlock.action;
 
-        //todo: sisatia
-        //Make an interface for data type for sanity check
         let data: ControlDataBlock = {
             testName: testName,
             controlName: controlBlock.name.replace(/ /g, ''),
@@ -83,18 +78,6 @@ export class YamlParser {
 
         let controlParser: BaseParser = ControlParserFactory.createInstance(controlType, data);
         await controlParser.renderTemplate();
-    }
-
-    private genLexString(n: number) {
-
-        var lexNumbers: Array<string> = new Array();
-        for(let i = 1; i <= n; i++) {
-            lexNumbers.push(i + "");
-        }
-
-        lexNumbers.sort();
-        return lexNumbers;
-
     }
 
 }
