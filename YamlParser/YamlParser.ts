@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import { ControlParserFactory } from "./ControlParserFactory"
 import { BaseParser } from './BaseParser';
 import { UtilityParserFactory } from './UtilityParserFactory';
-import {ControlDataBlock, ControlParser, UtilityDataBlock, UtilityParser, Action, Block} from "./DataTypes"
+import { ControlDataBlock, ControlParser, UtilityDataBlock, UtilityParser, Action, Block, CustomTestParser, CustomTestDataBlock } from "./DataTypes"
+import { CustomTestsParser } from "./CustomTestParser" 
 
 export class YamlParser {
 
@@ -39,11 +40,26 @@ export class YamlParser {
 
             if (block.control) {
                 await this.initControl(testName, block.control, currentTestNumber, nextTestNumber);
-            } else {
+            } else if (block.utility) {
                 await this.initUtility(testName, block.utility, currentTestNumber, nextTestNumber);
+            } else {
+                //custom test
+                await this.initCustomTest(testName, block.custom, currentTestNumber, nextTestNumber)
             }
             i++;
         } 
+    }
+
+    private async initCustomTest(testName: string, customBlock: Record<CustomTestParser, any>, currentTestNumber: string, nextTestNumber: string | undefined) {
+        let data: CustomTestDataBlock = {
+            testName: testName,
+            customTestPath: customBlock.customTestPath,
+            currentTestPath: 'Tests/' + currentTestNumber + "-test.ts",
+            nextTestPath: nextTestNumber ? './' + nextTestNumber + "-test.ts": undefined
+        }
+
+        let customTestParser: BaseParser = new CustomTestsParser(data);
+        await customTestParser.renderTemplate();
     }
 
     private async initUtility(testName: string, utilityBlock: Record<UtilityParser, any>, currentTestNumber: string, nextTestNumber: string | undefined) {

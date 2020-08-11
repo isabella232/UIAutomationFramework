@@ -1,6 +1,6 @@
 import * as ejs from 'ejs';
 import * as fs from 'fs';
-import { ControlDataBlock, UtilityDataBlock } from "./DataTypes"
+import { ControlDataBlock, UtilityDataBlock, CustomTestDataBlock } from "./DataTypes"
 
 export class BaseParser {
 
@@ -8,9 +8,9 @@ export class BaseParser {
 
     protected templatePath: string;  
 
-    public data: ControlDataBlock | UtilityDataBlock;
+    public data: ControlDataBlock | UtilityDataBlock | CustomTestDataBlock;
     
-    constructor(templatePath: string, data: ControlDataBlock | UtilityDataBlock) {
+    constructor(templatePath: string, data: ControlDataBlock | UtilityDataBlock | CustomTestDataBlock) {
         this.templatePath = templatePath;
         this.templateData = "";
         this.data = data;

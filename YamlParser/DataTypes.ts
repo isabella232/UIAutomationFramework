@@ -2,7 +2,6 @@
 
 interface BaseDataBlock {
     testName: string;
-    selector: string;
     currentTestPath: string;
     nextTestPath: string | undefined;
 }
@@ -12,11 +11,17 @@ export interface ControlDataBlock extends BaseDataBlock {
     before: any;
     after: any;
     test: any ;
+    selector: string;
 }
 
 export interface UtilityDataBlock extends BaseDataBlock {
     utilityName: string;
     duration: string;
+    selector: string;
+}
+
+export interface CustomTestDataBlock extends BaseDataBlock {
+    customTestPath: string;
 }
 
 //General for all controls
@@ -35,6 +40,10 @@ export enum UtilityParser {
     Duration = "duration"
 }
 
+export enum CustomTestParser {
+    CustomTestPath = "customTestPath"
+}
+
 export enum Action {
     Before = "before",
     After = "after"
@@ -43,6 +52,7 @@ export enum Action {
 export enum Block {
     Name = "name",
     Control = "control",
-    Utility = "utility"
+    Utility = "utility",
+    Custom = "custom"
     /* Add more fields, as and when required, such as delay */
 }
