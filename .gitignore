@@ -7,3 +7,4 @@ package-lock.json
 UITesting.log
 Tests/*
 !Tests/InitTest.ts
+Screenshots

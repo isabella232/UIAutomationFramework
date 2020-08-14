@@ -34,6 +34,14 @@ export class TestDropdown extends TestBaseControl{
                 let value: string = await page.evaluate((element: any) => element.textContent, dropdown.controlElement);
                 assert.equal(value, input, "Input value doesn't match");
             })
+
+            afterEach(async function (this: any) {
+                if (this.currentTest.state !== 'passed') {
+                    await page.screenshot({ path: "Screenshots/" + dropdown.name + "-input-test-failed.png" });
+                }
+            });
+
+            
         })
     }
 

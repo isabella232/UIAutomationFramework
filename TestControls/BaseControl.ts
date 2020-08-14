@@ -14,6 +14,12 @@ export class TestBaseControl extends BaseControl {
                 let result = await control.exists();
                 assert.isTrue(result, control.name + " does not exist");
             });
+
+            afterEach(async function (this: any) {
+                if (this.currentTest.state !== 'passed') {
+                    await page.screenshot({ path: "Screenshots/" + this.name + "-exist-test-failed.png" });
+                }
+            });
         })
     };
 

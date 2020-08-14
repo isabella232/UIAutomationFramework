@@ -36,8 +36,12 @@ export class BaseControl {
 
     //We have separate init function if we choose to initailize all the objects in some other manner in future. 
     public async init() {
-        this.controlElement = await this.page.waitFor(this.selector);
-        return this.controlElement;
+        try {
+            this.controlElement = await this.page.waitFor(this.selector);
+            return this.controlElement;
+        } catch {
+            await this.page.screenshot({path: "Screenshots/" + this.name + "-does-not-exist-screenshot.png"});
+        }
     }
 
     /**
@@ -62,15 +66,15 @@ export class BaseControl {
         let startTime: Date = new Date();
         while (!elementPresent) {
             let currentTime: Date = new Date();
-            let timeDiff: number = (currentTime.getTime() - startTime.getTime())/1000;
-            
-            if(timeDiff > duration) {
+            let timeDiff: number = (currentTime.getTime() - startTime.getTime()) / 1000;
+
+            if (timeDiff > duration) {
                 break;
             }
 
             const timeoutValue = this.TIMEOUT_POLL_ELEMENTS_EXISTENCE;
 
-            await (new Promise(function(resolve, reject) {
+            await (new Promise(function (resolve, reject) {
                 setTimeout(resolve, timeoutValue);
             }));
 

@@ -32,7 +32,14 @@ export class TestButton extends TestBaseControl {
                 } else {
                     assert.isFalse(!isDisabled, "The button is disabled");
                 }
-            })
+            });
+
+            afterEach(async function (this: any) {
+                if (this.currentTest.state !== 'passed') {
+                    await page.screenshot({ path: "Screenshots/" + this.name + "-disabled-test-failed.png" });
+                }
+            });
+
         })
  
     }

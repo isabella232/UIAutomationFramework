@@ -40,6 +40,12 @@ export class TestTextbox extends TestBaseControl {
                 assert.equal(value, input, "Input value doesn't match");
             })
         })
+
+        afterEach(async function (this: any) {
+            if (this.currentTest.state !== 'passed') {
+                await page.screenshot({ path: "Screenshots/" + textbox.name + "-input-test-failed.png" });
+            }
+        });
     }
 
     public async testValidity() {
@@ -50,7 +56,13 @@ export class TestTextbox extends TestBaseControl {
             it('Validity Test', async function() {
                 let valid: boolean = await textbox.isInputValid();
                 assert.isTrue(valid, "Input value doesn't pass the validation");
-            })
+            });
+            
+            afterEach(async function (this: any) {
+                if (this.currentTest.state !== 'passed') {
+                    await page.screenshot({ path: "Screenshots/" + textbox.name + "-validity-test-failed.png" });
+                }
+            });
         })
     }
 
