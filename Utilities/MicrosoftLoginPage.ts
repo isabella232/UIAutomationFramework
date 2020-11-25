@@ -1,7 +1,7 @@
 
 const usernameSelector: string = 'input[type="email"][name=loginfmt]';
 const nextButtonSelector: string = 'input[type="submit"]';
-const signInWithUserNamePassSelector: string = '.actionLink > .normalText'
+const signInWithUserNamePassSelector: string = '#optionsContainer'
 const passwordSelector: string = 'input[name=Password]';
 const signInButtonSelector: string = '#submitButton';
 
