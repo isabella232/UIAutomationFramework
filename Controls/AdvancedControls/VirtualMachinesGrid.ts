@@ -1,7 +1,7 @@
 import { Button } from "../Button"
 import { Textbox } from "../Textbox"
 import { BaseControl } from "../BaseControl"
-import * as WBSelectors from "../../Resources/workloadBuilderSelector"
+import * as CommonSelectors from "../../Resources/CommonSelectors"
 import Utilities = require ("../../Utilities/Utils")
 
 export class VirtualMachinesGrid extends BaseControl {
@@ -13,7 +13,7 @@ export class VirtualMachinesGrid extends BaseControl {
     public async input(value: string) {
         await this.filterValue(value);
         let rowSelector: string = "div.azc-grid-cellContent:contains('" + value + "')";
-        await Utilities.checkElementExistenceToggled("UI Shield", WBSelectors.Common.uiShield, this.page);
+        await Utilities.checkElementExistenceToggled("UI Shield", CommonSelectors.Common.uiShield, this.page);
         await Utilities.clickUsingXPath(rowSelector, this.page);
 
     }
@@ -21,7 +21,7 @@ export class VirtualMachinesGrid extends BaseControl {
     private async filterValue(value: string) {
         logger.info("Filtering the value: " + value);
         let filterBoxSelector: string = 
-            WBSelectors.Common.vmGridFilterBox;
+            CommonSelectors.Common.vmGridFilterBox;
         await Utilities.delay(1000);
         await Utilities.inputTextHelper(filterBoxSelector, value, this.page, true);
         await Utilities.delay(1000);

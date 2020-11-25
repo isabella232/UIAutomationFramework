@@ -1,6 +1,6 @@
 import Utilities = require ("../Utilities/Utils")
 import { BaseControl } from "./BaseControl"
-import * as WBSelectors from "../Resources/workloadBuilderSelector"
+import * as CommonSelectors from "../Resources/CommonSelectors"
 
 export class Dropdown extends BaseControl{
 
@@ -36,7 +36,7 @@ export class Dropdown extends BaseControl{
         logger.info("Filtering the value: " + value);
 
         let filterBoxSelector: string = 
-            WBSelectors.Common.dropdownFilterBox;
+            CommonSelectors.Common.dropdownFilterBox;
         await Utilities.delay(1000);
         await Utilities.inputTextHelper(filterBoxSelector, value, this.page, false);
         await Utilities.delay(1000);

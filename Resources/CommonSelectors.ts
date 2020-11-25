@@ -1,8 +1,5 @@
 
 export class Common {
-    static readonly wbUrl: string = 'https://aka.ms/workloadbuilder'
-    static readonly wbUrlLocalHost: string = 
-    'https://ms.portal.azure.com/?feature.allowMultipleMigrateProjects=true&feature.customPortal=false&feature.eCSettingEnableAgentlessDepMapping=enabled&feature.allowAppInventory=true&feature.allowPhysicalAssessment=true&feature.importFeature=enabled&feature.WebAppsGoal=true&feature.enableExploreMoreTile=true&feature.canmodifyextensions=true&feature.disableBatch=true&clientOptimizations=false#blade/Microsoft_Azure_Migrate/AmhResourceMenuBlade/jbossMigration?testExtensions={%22Microsoft_Azure_Migrate%22:%22https://localhost:44300/%22}';
     static readonly createNewTextbox: string = 
     '.azc-input.azc-formControl.azc-validation-border.msportalfx-tooltip-overflow[placeholder=\"CreateNew\"]';
     static readonly createNewOkButton: string = 
@@ -13,6 +10,8 @@ export class Common {
     static readonly vmGridFilterBox: string = '[placeholder="Search to filter machines"]';
 }
 
+
+/* Specific only to Workload Builder Project
 export class PreCheckTab {
     static readonly migrateJBossButton: string = '[title="Migrate JBoss"]';
     static readonly subscriptionDropdown: string = '[aria-label=\"Subscription Dropdown\"]';
@@ -60,3 +59,5 @@ export class DeployTab {
 export class Constants {
     
 }
+
+*/

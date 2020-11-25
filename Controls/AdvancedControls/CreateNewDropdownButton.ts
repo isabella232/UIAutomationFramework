@@ -1,7 +1,7 @@
 import { Button } from "../Button"
 import { Textbox } from "../Textbox"
 import { BaseControl } from "../BaseControl"
-import * as WBSelectors from "../../Resources/workloadBuilderSelector"
+import * as CommonSelectors from "../../Resources/CommonSelectors"
 
 export class CreateNewDropdownButton extends BaseControl {
     
@@ -19,11 +19,11 @@ export class CreateNewDropdownButton extends BaseControl {
         await this.controlElement.init();
         await this.controlElement.click();
 
-        let textBoxSelector: string = WBSelectors.Common.createNewTextbox;
+        let textBoxSelector: string = CommonSelectors.Common.createNewTextbox;
         let textBox = new Textbox(this.name + "textbox", textBoxSelector, this.page);
         textBox.input(value);
         
-        let okButton = new Button(this.name + "OK Button", WBSelectors.Common.createNewOkButton, this.page);
+        let okButton = new Button(this.name + "OK Button", CommonSelectors.Common.createNewOkButton, this.page);
         await okButton.init();
         await okButton.click();
     }

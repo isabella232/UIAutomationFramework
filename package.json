@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "login": "mocha Output/bootstrap.js Output/Main/login.js --timeout 100000",
+    "login": "HEADLESS=0 mocha Output/bootstrap.js Output/Main/login.js --timeout 100000",
     "parseyaml": "node Output/YamlParser/main.js",
     "test": "HEADLESS=0 ts-mocha ./bootstrap.ts ./Main/main.ts ./Tests/InitTest.ts --sort --timeout 30000 --reporter mochawesome --bail"
   },
