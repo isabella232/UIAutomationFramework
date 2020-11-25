@@ -4,7 +4,7 @@ export class Common {
     static readonly wbUrlLocalHost: string = 
     'https://ms.portal.azure.com/?feature.allowMultipleMigrateProjects=true&feature.customPortal=false&feature.eCSettingEnableAgentlessDepMapping=enabled&feature.allowAppInventory=true&feature.allowPhysicalAssessment=true&feature.importFeature=enabled&feature.WebAppsGoal=true&feature.enableExploreMoreTile=true&feature.canmodifyextensions=true&feature.disableBatch=true&clientOptimizations=false#blade/Microsoft_Azure_Migrate/AmhResourceMenuBlade/jbossMigration?testExtensions={%22Microsoft_Azure_Migrate%22:%22https://localhost:44300/%22}';
     static readonly createNewTextbox: string = 
-    '.azc-input.azc-formControl.azc-validation-border.msportalfx-tooltip-overflow[placeholder=\"create new\"]';
+    '.azc-input.azc-formControl.azc-validation-border.msportalfx-tooltip-overflow[placeholder=\"CreateNew\"]';
     static readonly createNewOkButton: string = 
     '.fxs-button.fxt-button.fxs-inner-solid-border.fxs-portal-button-primary[title=\"OK\"][aria-disabled=\"false\"]';
     static readonly uiShield: string = 'div.fxs-part-blockui-shield';
