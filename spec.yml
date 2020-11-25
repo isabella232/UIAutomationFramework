@@ -14,6 +14,7 @@
     action: 
       after:
         click: "yes"
+        action123: "true"
     test:
       testExists: "yes"
 
@@ -51,7 +52,7 @@
     dropdownSelector: '[aria-label=\"Workload Dropdown\"]'
     action: 
       before:
-        input: "sisatia-ui-wb"
+        input: "sisatia-ui-wb1234"
     test:
       testExists: "yes"
 
@@ -62,7 +63,7 @@
     selector: '[aria-label=\"Workload Dropdown\"]'
     test:
       testExists: "yes"
-      testInput: "(New) sisatia-ui-wb"
+      testInput: "(New) sisatia-ui-wb1234"
 
     
 - name: Add a 500 ms delay for new elements to show up
@@ -180,7 +181,7 @@
     test:
       testExists: "yes"
 
-- name: Add a 90*1000 ms delay for new elements to show up
+- name: Add a 90*1000 ms delay for prereq to be formed
   utility: 
     type: delay
     name: AddDelay
@@ -224,11 +225,11 @@
     selector: '[aria-label=\"Migration Dropdown\"]'
     action: 
       before:
-        input: "wb-common-test-wbvcenter-scus (wb-common-test-migration-canary-scus-wbvcenter)"
+        input: "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
         waitLoading: "yes"
     test:
       testExists: "yes"
-      testInput: "wb-common-test-wbvcenter-scus (wb-common-test-migration-canary-scus-wbvcenter)"
+      testInput: "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
 
 - name: Appliance Dropdown
   control: 
@@ -237,11 +238,11 @@
     selector: '[aria-label=\"Appliance Dropdown\"]'
     action: 
       before:
-        input: "wbappliance0"
+        input: "WBAppliance"
         waitLoading: "yes"
     test:
       testExists: "yes"
-      testInput: "wbappliance0"
+      testInput: "WBAppliance"
 
 - name: Check for UI shield to be toggled
   utility: 
