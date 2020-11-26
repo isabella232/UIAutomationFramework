@@ -1,5 +1,5 @@
 /// <reference path="../bootstrap.ts" />
-import { VirtualMachinesGrid } from "../Controls/AdvancedControls/VirtualMachinesGrid";
+import { VirtualMachinesGrid } from "../Controls/VirtualMachinesGrid";
 var <%= controlName %>: VirtualMachinesGrid;
 describe("<%- testName %>", async function () {
     before(async function () {

@@ -1,18 +1,16 @@
-import { DelayParser } from "./Utilities/DelayParser";
-import { WaitUntilElementExistsParser } from "./Utilities/WaitUntilElementExistsParser";
-import { CheckElementExistenceToggledParser } from "./Utilities/CheckElementExistenceToggledParser"
+import { BaseParser } from "./BaseParser";
+import { UtilityDataBlock } from "./DataTypes";
 
-const UTILITIES: {[key: string] :any} = {
+const UTILITIES: {[key: string] : string} = {
     //<ControlName> : <ControlParser>
-    "delay": DelayParser,
-    "waitUntilElementExists": WaitUntilElementExistsParser,
-    "checkElementExistenceToggled": CheckElementExistenceToggledParser
+    "delay": "Templates/DelayTemplate.ejs.t",
+    "waitUntilElementExists": "Templates/WaitUntilElementExistsemplate.ejs.t",
+    "checkElementExistenceToggled": "Templates/CheckElementExistenceToggledTemplate.ejs.t"
 }
 
-export class UtilityParserFactory {
-    static createInstance(utilityType: string, data: any) {
-        const parserCreator = UTILITIES[utilityType];
-        const parser = parserCreator ? new parserCreator(data) : null;
-        return parser;
+export class UtilityParserFactory extends BaseParser{
+    constructor(utilityType: string, data: UtilityDataBlock) {
+        const templatePath: string = UTILITIES[utilityType];;
+        super(templatePath, data);
     }
 }

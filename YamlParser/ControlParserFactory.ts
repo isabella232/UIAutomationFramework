@@ -1,24 +1,20 @@
-import { ButtonParser } from "./Controls/ButtonParser";
-import { DropdownParser } from "./Controls/DropdownParser";
-import { TextboxParser } from "./Controls/TextboxParser";
-import { InfoboxParser } from "./Controls/InfoboxParser";
-import { CreateNewDropdownButtonParser } from "./Controls/CreateNewDropdownButtonParser"
-import { VirtualMachinesGridParser } from "./Controls/VirtualMachinesGridParser"
+import { BaseParser } from "./BaseParser"
+import { ControlDataBlock } from "./DataTypes"
 
-const CONTROLS: {[key: string] :any} = {
+const CONTROLS: {[key: string] : string} = {
     //<ControlName> : <ControlParser>
-    "button": ButtonParser,
-    "dropdown": DropdownParser,
-    "textbox": TextboxParser,
-    "infobox": InfoboxParser,
-    "createNewDropdownButton": CreateNewDropdownButtonParser,
-    "virtualMachinesGrid": VirtualMachinesGridParser
+    "button": "Templates/ButtonTemplate.ejs.t",
+    "dropdown": "Templates/DropdownTemplate.ejs.t",
+    "textbox": "Templates/TextboxTemplate.ejs.t",
+    "infobox": "Templates/InfoboxTemplate.ejs.t",
+    "createNewDropdownButton": "Templates/CreateNewDropdownButtonTemplate.ejs.t",
+    "virtualMachinesGrid": "Templates/VirtualMachinesGridTemplate.ejs.t"
 }
 
-export class ControlParserFactory {
-    static createInstance(controlType: string, data: any) {
-        const parserCreator = CONTROLS[controlType];
-        const parser = parserCreator ? new parserCreator(data) : null;
-        return parser;
+export class ControlParserFactory extends BaseParser {
+
+    constructor(controlType: string, data: ControlDataBlock) {
+        const templatePath: string = CONTROLS[controlType];;
+        super(templatePath, data);
     }
 }

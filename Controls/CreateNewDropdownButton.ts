@@ -1,7 +1,7 @@
-import { Button } from "../Button"
-import { Textbox } from "../Textbox"
-import { BaseControl } from "../BaseControl"
-import * as CommonSelectors from "../../Resources/CommonSelectors"
+import { Button } from "./Button"
+import { Textbox } from "./Textbox"
+import { BaseControl } from "./BaseControl"
+import * as CommonSelectors from "../Resources/CommonSelectors"
 
 export class CreateNewDropdownButton extends BaseControl {
     

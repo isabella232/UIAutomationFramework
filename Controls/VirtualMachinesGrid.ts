@@ -1,8 +1,8 @@
-import { Button } from "../Button"
-import { Textbox } from "../Textbox"
-import { BaseControl } from "../BaseControl"
-import * as CommonSelectors from "../../Resources/CommonSelectors"
-import Utilities = require ("../../Utilities/Utils")
+import { Button } from "./Button"
+import { Textbox } from "./Textbox"
+import { BaseControl } from "./BaseControl"
+import * as CommonSelectors from "../Resources/CommonSelectors"
+import Utilities = require ("../Utilities/Utils")
 
 export class VirtualMachinesGrid extends BaseControl {
 

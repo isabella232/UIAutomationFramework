@@ -1,6 +1,6 @@
 import 'mocha';
-import { CreateNewDropdownButton } from "../../Controls/AdvancedControls/CreateNewDropdownButton"
-import { TestBaseControl } from "./../BaseControl"
+import { CreateNewDropdownButton } from "../Controls/CreateNewDropdownButton"
+import { TestBaseControl } from "./BaseControl"
 export class TestCreateNewDropdownButton extends TestBaseControl {
 
     /**

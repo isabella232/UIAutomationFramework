@@ -17,7 +17,6 @@ export class YamlParser {
 
     constructor() {
         try {
-            //logger.info("Initiate generation of test files");
             let fileContents =  fs.readFileSync(path.resolve(__dirname, "../spec.yml"), 'utf8');
             this.data = yaml.safeLoad(fileContents);
             this.gotoPage = this.data[0]["goto"];
@@ -29,8 +28,6 @@ export class YamlParser {
 
 
     public async RenderTestTemplates() {
-
-        //await this.initTestTemplate();
 
         let i: number = 1;
         while (i < this.data.length) {
@@ -74,7 +71,7 @@ export class YamlParser {
             nextTestPath: nextTestNumber ? './' + nextTestNumber + "-test.ts": undefined
         }
 
-        let utilityParser: BaseParser = UtilityParserFactory.createInstance(utilityType, data);
+        let utilityParser: BaseParser = new UtilityParserFactory(utilityType, data);
         await utilityParser.renderTemplate();
     }
 
@@ -93,7 +90,7 @@ export class YamlParser {
             nextTestPath: nextTestNumber ? './' + nextTestNumber + "-test.ts": undefined
         }
 
-        let controlParser: BaseParser = ControlParserFactory.createInstance(controlType, data);
+        let controlParser: BaseParser = new ControlParserFactory(controlType, data);
         await controlParser.renderTemplate();
     }
 

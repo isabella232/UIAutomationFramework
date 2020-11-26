@@ -1,5 +1,5 @@
 /// <reference path="../bootstrap.ts" />
-import { TestCreateNewDropdownButton } from "../TestControls/AdvancedControls/CreateNewDropdownButton";
+import { TestCreateNewDropdownButton } from "../TestControls/CreateNewDropdownButton";
 var <%= controlName %>: TestCreateNewDropdownButton;
 describe("<%- testName %>", async function () {
     before(async function () {
