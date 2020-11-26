@@ -1,5 +1,6 @@
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
+const path = require("path");
 import { ControlParserFactory } from "./ControlParserFactory"
 import { BaseParser } from './BaseParser';
 import { UtilityParserFactory } from './UtilityParserFactory';
@@ -17,7 +18,7 @@ export class YamlParser {
     constructor() {
         try {
             //logger.info("Initiate generation of test files");
-            let fileContents = fs.readFileSync('/Users/simratsatia/Desktop/UIAutomationFramework/spec.yml', 'utf8');
+            let fileContents =  fs.readFileSync(path.resolve(__dirname, "../spec.yml"), 'utf8');
             this.data = yaml.safeLoad(fileContents);
             this.gotoPage = this.data[0]["goto"];
             this.projectName = this.data[0]["projectName"];
