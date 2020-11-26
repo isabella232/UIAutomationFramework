@@ -2,7 +2,7 @@ import { BaseParser } from "./BaseParser"
 import { ControlDataBlock } from "./DataTypes"
 
 const CONTROLS: {[key: string] : string} = {
-    //<ControlName> : <ControlParser>
+    //<ControlName> : <TemplatePath>
     "button": "Templates/ButtonTemplate.ejs.t",
     "dropdown": "Templates/DropdownTemplate.ejs.t",
     "textbox": "Templates/TextboxTemplate.ejs.t",

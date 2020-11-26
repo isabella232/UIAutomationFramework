@@ -2,7 +2,7 @@ import { BaseParser } from "./BaseParser";
 import { UtilityDataBlock } from "./DataTypes";
 
 const UTILITIES: {[key: string] : string} = {
-    //<ControlName> : <ControlParser>
+    //<ControlName> : <TemplatePath>
     "delay": "Templates/DelayTemplate.ejs.t",
     "waitUntilElementExists": "Templates/WaitUntilElementExistsemplate.ejs.t",
     "checkElementExistenceToggled": "Templates/CheckElementExistenceToggledTemplate.ejs.t"
