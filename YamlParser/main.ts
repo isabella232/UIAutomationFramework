@@ -1,8 +1,11 @@
 import { YamlParser } from "./YamlParser"
 import * as winston from "winston"
 import _ from "lodash"
+import * as fsExtra from "fs-extra"
+import * as path from 'path';
 
 const globalVariables = _.pick(global, ['logger']);
+const testDir = "../Tests"
 
 declare global {
   var logger: any;
@@ -27,7 +30,8 @@ async function main() {
       });
       
     var parser: YamlParser = new YamlParser();
-    parser.RenderTestTemplates();
+    fsExtra.emptyDirSync(path.resolve(__dirname, "../Tests"))
+    await parser.RenderTestTemplates();
 }
 
 main(); 
