@@ -30,6 +30,9 @@ async function main() {
       });
       
     var parser: YamlParser = new YamlParser();
+    logger.info();
+    logger.info("=============================================")
+    logger.info("INITIATING PARSING OF YAML");
     fsExtra.emptyDirSync(path.resolve(__dirname, "../Tests"))
     await parser.RenderTestTemplates();
 }
