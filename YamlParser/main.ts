@@ -4,6 +4,10 @@ import _ from "lodash"
 
 const globalVariables = _.pick(global, ['logger']);
 
+declare global {
+  var logger: any;
+}
+
 async function main() {
     global.logger = winston.createLogger({
         format: winston.format.combine(
