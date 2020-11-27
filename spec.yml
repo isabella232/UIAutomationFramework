@@ -8,14 +8,14 @@
 
 - name: Click the JBoss Migrate Button
   control: 
-    type: button
+    type: Button
     name: JBossMigrate Button
     selector: '[title=\"Migrate JBoss\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
+      - testExists
 
 # - name: Custom Test
 #   custom: 
@@ -23,48 +23,51 @@
 
 - name: Subscription Dropdown Testing
   control: 
-    type: dropdown
+    type: Dropdown
     name: Subscription Dropdown
     selector: '[aria-label=\"Subscription Dropdown\"]'
     action: 
       before:
-        input: "Workload Builder BVT Testing"
-        waitLoading: "yes"
+        - loading
+        - input:
+          - "Workload Builder BVT Testing"
     test:
-      testExists: "yes"
-      testInput: "Workload Builder BVT Testing"
+      - testExists
+      - testInput:
+        - "Workload Builder BVT Testing"
 
 - name: Wait for workload dropdown to load
   control:
-    type: dropdown
+    type: Dropdown
     name: WorkloadDropdownLoad
     selector: '[aria-label=\"Workload Dropdown\"]'
     action:
       before:
-        waitLoading: "yes"
+        - loading 
 
 - name: Create New WorkloadBuilder project
   control: 
-    type: createNewDropdownButton
+    type: CreateNewDropdownButton
     name: CreateNewWB
     selector: '.fxt-workload-create'
     dropdownSelector: '[aria-label=\"Workload Dropdown\"]'
     action: 
       before:
-        input: "sisatia-ui-wb1234"
+        - input:
+          - "sisatia-ui-wb1234"
     test:
-      testExists: "yes"
+      - testExists
 
 - name: Test input of workload dropdown
   control:
-    type: dropdown
+    type: Dropdown
     name: Workload Dropdown
     selector: '[aria-label=\"Workload Dropdown\"]'
     test:
-      testExists: "yes"
-      testInput: "(New) sisatia-ui-wb1234"
+      - testExists
+      - testInput:
+        - "(New) sisatia-ui-wb1234"
 
-    
 - name: Add a 500 ms delay for new elements to show up
   utility: 
     type: delay
@@ -73,53 +76,58 @@
 
 - name: Provide input to Version Textbox
   control:
-    type: textbox
+    type: Textbox
     name: VersionTextbox
     selector: '[aria-label=\"Version Textbox\"]'
     action:
       before:
-        input: "v1"
-      after: 
-        ...
+        - input:
+          - "v1"
     test:
-      testExists: "yes"
-      testInput: "v1"
+      - testExists
+      - testInput:
+        - "v1"
 
 - name: Provide input to Instance Textbox
   control:
-    type: textbox
-    name: InstanceTextbox
+    type: Textbox
+    name: VersionTextbox
     selector: '[aria-label=\"Instance Textbox\"]'
     action:
       before:
-        input: "i1"
+        - input:
+          - "i1"
     test:
-      testExists: "yes"
-      testInput: "i1"
+      - testExists
+      - testInput:
+        - "i1"
 
 - name: Resource Group Dropdown Testing
   control: 
-    type: dropdown
+    type: Dropdown
     name: Resource Dropdown
     selector: '[aria-label=\"Create new or use existing ResoureceGroup dropdown\"]'
     action: 
       before:
-        input: "sisatia-df10"
+        - input:
+          - "sisatia-df10"
     test:
-      testExists: "yes"
-      testInput: "sisatia-df10"
+      - testExists
+      - testInput:
+        - "sisatia-df10"
 
 - name: Next Prereq Button
   control: 
-    type: button
+    type: Button
     name: NextPrereqButton
     selector: '[title=\"Next: Migration Package\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testIsDisabled: "no"
-      testExists: "yes"
+      - testIsDisabled:
+        - false
+      - testExists
 
 # ##############################################
 # #PAGE 2 - Prereq Creation Tab
@@ -132,53 +140,59 @@
 
 - name: Storage Account Dropdown
   control: 
-    type: dropdown
+    type: Dropdown
     name: StorageAccountDropdown
     selector: '[aria-label=\"Storage Dropdown\"]'
     action: 
       before:
-        input: "wblsa79128152339"
-        waitLoading: "yes"
+        - loading
+        - input: 
+          - "wblsa79128152339"
     test:
-      testExists: "yes"
-      testInput: "wblsa79128152339"
+      - testExists
+      - testInput:
+        - "wblsa79128152339"
 
 - name: KeyVault Dropdown
   control: 
-    type: dropdown
+    type: Dropdown
     name: KeyvaultDropdown
     selector: '[aria-label=\"KeyVault Dropdown\"]'
     action: 
       before:
-        input: "wbkv79128152339"
-        waitLoading: "yes"
+        - loading
+        - input: 
+          - "wbkv79128152339"
     test:
-      testExists: "yes"
-      testInput: "wbkv79128152339"
+      - testExists
+      - testInput:
+        - "wbkv79128152339"
 
 - name: ApplicationInsights Dropdown
   control: 
-    type: dropdown
+    type: Dropdown
     name: ApplicationInsightsDropdown
     selector: '[aria-label=\"ApplicationInsights Dropdown\"]'
     action: 
       before:
-        input: "wbappinsights791281523"
-        waitLoading: "yes"
+        - loading
+        - input: 
+          - "wbappinsights791281523"
     test:
-      testExists: "yes"
-      testInput: "wbappinsights791281523"
+      - testExists
+      - testInput:
+        - "wbappinsights791281523"
 
 - name: CreatePrereqButton Test
   control: 
-    type: button
+    type: Button
     name: CreatePrereqButton
     selector: '[title=\"Generate Migration Agent Package\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
+      - testExists
 
 - name: Add a 90*1000 ms delay for prereq to be formed
   utility: 
@@ -188,14 +202,14 @@
 
 - name: Check The Prereq Button
   control: 
-    type: button
+    type: Button
     name: CheckPrereqButton
     selector: '[title=\"Check the prerequisites\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
+      - testExists
 
 - name: Wait until the success infobox exists
   utility:
@@ -205,43 +219,48 @@
 
 - name: NextVM Tab
   control: 
-    type: button
+    type: Button
     name: NextVMTab
     selector: '[title=\"Next: Select VMs for Migration\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
+      - testExists
+
 
 # ##############################################
 # #PAGE 3 - VM Tab
 
 - name: MigrationProject Dropdown
   control: 
-    type: dropdown
+    type: Dropdown
     name: MigrationProject
     selector: '[aria-label=\"Migration Dropdown\"]'
     action: 
       before:
-        input: "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
-        waitLoading: "yes"
+        - loading
+        - input:
+          - "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
     test:
-      testExists: "yes"
-      testInput: "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
+      - testExists
+      - testInput:
+        - "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
 
 - name: Appliance Dropdown
   control: 
-    type: dropdown
+    type: Dropdown
     name: ApplianceDropdown
     selector: '[aria-label=\"Appliance Dropdown\"]'
     action: 
       before:
-        input: "WBAppliance"
-        waitLoading: "yes"
+        - loading
+        - input: 
+          - "WBAppliance"
     test:
-      testExists: "yes"
-      testInput: "WBAppliance"
+      - testExists
+      - testInput: 
+        - "WBAppliance"
 
 - name: Check for UI shield to be toggled
   utility: 
@@ -251,26 +270,26 @@
 
 - name: Virtual Machine Selection
   control:
-    type: virtualMachinesGrid
+    type: VirtualMachinesGrid
     name: vmgrid
     selector: ""
     action:
       before:
-        input: JbossEAP-16
+        - input:
+          - JbossEAP-16
 
 
 - name: CreateAssessment
   control: 
-    type: button
+    type: Button
     name: CreateAssessmentButton
     selector: '[title=\"Create Assessment\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
+      - testExists
 
-- name: Check for UI shield to be toggled
   utility: 
     type: checkElementExistenceToggled
     name: UIToggled
@@ -278,16 +297,12 @@
 
 - name: NextAssessment
   control: 
-    type: button
+    type: Button
     name: NextAssessmentButton
     selector: '[title=\"Next: Deep-Discovery\"]'
     action: 
       after:
-        click: "yes"
+        - click
     test:
-      testExists: "yes"
-
-
-
-
+      - testExists
 

@@ -7,7 +7,8 @@ interface BaseDataBlock {
 }
 
 export interface ControlDataBlock extends BaseDataBlock {
-    controlName: string;
+    testControlName: string;
+    controlType: string;
     before: any;
     after: any;
     test: any ;

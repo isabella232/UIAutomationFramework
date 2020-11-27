@@ -81,7 +81,8 @@ export class YamlParser {
 
         let data: ControlDataBlock = {
             testName: testName,
-            controlName: controlBlock.name.replace(/ /g, ''),
+            controlType: controlType,
+            testControlName: controlBlock.name.replace(/ /g, ''),
             selector: controlBlock.selector,
             before: actionBlock ? actionBlock.before : undefined,
             after: actionBlock ? actionBlock.after : undefined,

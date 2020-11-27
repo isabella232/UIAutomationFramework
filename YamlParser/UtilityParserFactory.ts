@@ -4,7 +4,7 @@ import { UtilityDataBlock } from "./DataTypes";
 const UTILITIES: {[key: string] : string} = {
     //<ControlName> : <TemplatePath>
     "delay": "Templates/DelayTemplate.ejs.t",
-    "waitUntilElementExists": "Templates/WaitUntilElementExistsemplate.ejs.t",
+    "waitUntilElementExists": "Templates/WaitUntilElementExistsTemplate.ejs.t",
     "checkElementExistenceToggled": "Templates/CheckElementExistenceToggledTemplate.ejs.t"
 }
 
