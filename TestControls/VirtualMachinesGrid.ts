@@ -1,24 +1,20 @@
 import 'mocha';
-import { CreateNewDropdownButton } from "../Controls/CreateNewDropdownButton"
+import { VirtualMachinesGrid } from "../Controls/VirtualMachinesGrid"
 import { TestBaseControl } from "./BaseControl"
-export class TestCreateNewDropdownButton extends TestBaseControl {
+export class TestVirtualMachinesGrid extends TestBaseControl {
 
     /**
      * Dropdown object
      */
-    public createNew: CreateNewDropdownButton;
+    public virtualMachinesGrid: VirtualMachinesGrid;
 
     constructor(name: string, selector: string, page: any) {
         super(name, selector, page);
-        this.createNew = new CreateNewDropdownButton(name, selector, page);
+        this.virtualMachinesGrid = new VirtualMachinesGrid(name, selector, page);
     }
 
     public async init() {
-        await this.createNew.init();
-    }
-
-    public async testExists(){
-        await super.testExists(this.createNew);
+        await this.virtualMachinesGrid.init();
     }
 
 }
