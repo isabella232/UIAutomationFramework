@@ -91,7 +91,7 @@ export class YamlParser {
             nextTestPath: nextTestNumber ? './' + nextTestNumber + "-test.ts": undefined
         }
 
-        let controlParser: BaseParser = new ControlParserFactory(controlType, data);
+        let controlParser: BaseParser = new ControlParserFactory(data);
         await controlParser.renderTemplate();
     }
 
