@@ -3,6 +3,7 @@ import * as winston from "winston"
 import _ from "lodash"
 import * as fsExtra from "fs-extra"
 import * as path from 'path';
+import { logger } from '../Logger'
 
 const globalVariables = _.pick(global, ['logger']);
 const testDir = "../Tests"
@@ -12,25 +13,10 @@ declare global {
 }
 
 async function main() {
-    global.logger = winston.createLogger({
-        format: winston.format.combine(
-          winston.format.colorize(),
-          winston.format.timestamp(),
-          winston.format.align(),
-          winston.format.printf(
-            info => `${info.level}: ${info.message}`
-          )
-        ),
-        transports: [
-          new (winston.transports.File)({
-            filename: 'UITesting.log',
-            level: 'info'
-          })
-        ],
-      });
+    global.logger = logger
       
     var parser: YamlParser = new YamlParser();
-    logger.info();
+    logger.info("");
     logger.info("=============================================")
     logger.info("INITIATING PARSING OF YAML");
     fsExtra.emptyDirSync(path.resolve(__dirname, "../Tests"))

@@ -5,6 +5,7 @@ import expect from "chai"
 import _ from "lodash"
 import * as winston from "winston"
 import dotenv from "dotenv"
+import { logger } from './Logger'
 
 dotenv.config()
 
@@ -29,22 +30,7 @@ const opts = {
 
 // expose variables
 before(async function () {
-  global.logger = winston.createLogger({
-    format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.timestamp(),
-      winston.format.align(),
-      winston.format.printf(
-        info => `${info.level}: ${info.message}`
-      )
-    ),
-    transports: [
-      new (winston.transports.File)({
-        filename: 'UITesting.log',
-        level: 'info'
-      })
-    ],
-  });
+  global.logger = logger
 
   global.expect = expect;
   global.browser = await puppeteer.launch(opts);
