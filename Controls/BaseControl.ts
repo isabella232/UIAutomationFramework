@@ -1,3 +1,5 @@
+import { Util } from "../Utilities/Utils"
+
 export class BaseControl {
 
     /**
@@ -16,6 +18,11 @@ export class BaseControl {
     protected page: any;
 
     /**
+     * Represents the utilities object for the element
+     */
+    protected utils: Util;
+
+    /**
      * Represents the control element object
      */
     public controlElement: any;
@@ -28,6 +35,7 @@ export class BaseControl {
         this.name = name;
         this.selector = selector;
         this.page = page;
+        this.utils = Util.getUtilities(page);
     }
 
     /**

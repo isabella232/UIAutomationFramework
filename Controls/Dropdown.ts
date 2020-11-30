@@ -1,4 +1,3 @@
-import Utilities = require ("../Utilities/Utils")
 import { BaseControl } from "./BaseControl"
 import * as CommonSelectors from "../Resources/CommonSelectors"
 
@@ -18,7 +17,7 @@ export class Dropdown extends BaseControl{
         //Likely to have this selector also as user input/resource file for extensibility
         //todo: sisatia
         let selector: string = ".azc-disabled" + this.selector;
-        await Utilities.checkElementExistenceToggled(this.name, selector, this.page);
+        await this.utils.checkElementExistenceToggled(this.name, selector);
     }
 
     public async input(value: string) {
@@ -26,7 +25,7 @@ export class Dropdown extends BaseControl{
         await this.controlElement.click();
         await this.filterValue(value);
         let dropdownItemSelector: string = "span:contains('" + value + "')";
-        await Utilities.clickUsingXPath(dropdownItemSelector, this.page);
+        await this.utils.clickUsingXPath(dropdownItemSelector);
 
         //Update logging functionality
         logger.info(this.name + " Dropdown Update!");
@@ -37,8 +36,8 @@ export class Dropdown extends BaseControl{
 
         let filterBoxSelector: string = 
             CommonSelectors.Common.dropdownFilterBox;
-        await Utilities.delay(1000);
-        await Utilities.inputTextHelper(filterBoxSelector, value, this.page, false);
-        await Utilities.delay(1000);
+        await this.utils.delay(1000);
+        await this.utils.inputTextHelper(filterBoxSelector, value, false);
+        await this.utils.delay(1000);
     }
 }

@@ -1,91 +1,119 @@
-/**
- * Function to return the xpath of an element
- */
 
-export async function getXPath(selector: string, page: any) {
 
-    let xPath = await page.evaluate((selector: string) => {
-        var item = $(selector)[0]
-        while (item == undefined) {
-            item = $(selector)[0]
-        }
-        const getPathTo = (element: any): any => {
-            if (element.tagName == 'HTML') {
-                return '/HTML[1]';
-            }
-            if (element === document.body)
-                return '/HTML[1]/BODY[1]';
 
-            var ix = 0;
-            var siblings = element.parentNode.childNodes;
-            for (var i = 0; i < siblings.length; i++) {
-                var sibling = siblings[i];
-                if (sibling === element)
-                    return getPathTo(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
-                if (sibling.nodeType === 1 && sibling.tagName === element.tagName)
-                    ix++;
-            }
-        }
+export class Util {
 
-        return getPathTo(item);
-    }, selector);
+    private page: any
 
-    return xPath;
-}
+    private static util: Util;
 
-/**
- * Function to click the element using XPath
- */
-export async function clickUsingXPath(selector: string, page: any) {
-    let xPath: string = await getXPath(selector, page);
-
-    let item = await page.$x(xPath);
-    await item[0].click();
-}
-
-/**
- * Function to add the desired delay
- */
-export function delay(time: number /** time in millisecond */): any {
-    return new Promise(function(resolve) { 
-        setTimeout(resolve, time)
-    });
- }
-
- /**
-  * To transition from the existence and non existence of an element
-  */
-export async function checkElementExistenceToggled(name: string, selector: string, page: any) {
-    logger.info(name + " element present");
-
-    let element: any;
-    let elementRemoved: boolean = false;
-    while (!elementRemoved) {
-        try {
-            element = await page.waitFor(selector, { timeout: 2000 });
-        }
-        catch {
-            elementRemoved = true;
-        }
+    private constructor(page: any) {
+        this.page = page;
     }
-    logger.info(name + " element removed");
-}
-/**
- * Generic function to input text in any field
- */
-export async function inputTextHelper(selector: string, value: string, page: any, xPathClickRequired?: boolean) {
-    await page.waitFor(selector);
-    if (xPathClickRequired) {
-        await clickUsingXPath(selector, page);
-    }
-    await clearTextField(selector, page);
-    await page.$eval(selector, (el: any, value: string) => { el.value = value + " " }, value);
-    await page.keyboard.press('Backspace');
-}
 
-async function clearTextField(selector: string, page:any) {
-    logger.info("Clearing the text field")
-    const textField = await page.waitFor(selector);
-    await textField.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
+    /**
+     * Function to create the instance of a utility class. Conforms to the singleton design pattern. 
+     */
+    public static getUtilities(page: any): Util {
+        if (!Util.util) {
+            Util.util = new Util(page);
+        }
+
+        return Util.util;
+    }
+
+    /**
+     * Get the xPath based on the selector
+     */
+    public async getXPath(selector: string) {
+        let xPath = await this.page.evaluate((selector: string) => {
+            var item = $(selector)[0]
+            while (item == undefined) {
+                item = $(selector)[0]
+            }
+            const getPathTo = (element: any): any => {
+                if (element.tagName == 'HTML') {
+                    return '/HTML[1]';
+                }
+                if (element === document.body)
+                    return '/HTML[1]/BODY[1]';
+
+                var ix = 0;
+                var siblings = element.parentNode.childNodes;
+                for (var i = 0; i < siblings.length; i++) {
+                    var sibling = siblings[i];
+                    if (sibling === element)
+                        return getPathTo(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                    if (sibling.nodeType === 1 && sibling.tagName === element.tagName)
+                        ix++;
+                }
+            }
+
+            return getPathTo(item);
+        }, selector);
+
+        return xPath;
+    }
+
+    /**
+     * Function to click the element using XPath
+     */
+    public async clickUsingXPath(selector: string) {
+        let xPath: string = await this.getXPath(selector);
+
+        let item = await this.page.$x(xPath);
+        await item[0].click();
+    }
+
+    /**
+     * Function to add the desired delay
+     */
+    public delay(time: number /** time in millisecond */): any {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, time)
+        });
+    }
+
+    /**
+     * Function to check if the element came and went out of existence i.e. toggled
+     */
+    public async checkElementExistenceToggled(name: string, selector: string) {
+        logger.info(name + " element present");
+
+        let element: any;
+        let elementRemoved: boolean = false;
+        while (!elementRemoved) {
+            try {
+                element = await this.page.waitFor(selector, { timeout: 2000 });
+            }
+            catch {
+                elementRemoved = true;
+            }
+        }
+        logger.info(name + " element removed");
+    }
+
+    /**
+     * Generic function to input text in any field
+     */
+    public async  inputTextHelper(selector: string, value: string, xPathClickRequired?: boolean) {
+        await this.page.waitFor(selector);
+        if (xPathClickRequired) {
+            await this.clickUsingXPath(selector);
+        }
+        await this.clearTextField(selector);
+        await this.page.$eval(selector, (el: any, value: string) => { el.value = value + " " }, value);
+        await this.page.keyboard.press('Backspace');
+    }
+
+    /**
+     * Function to clear the text field
+     */
+    public async clearTextField(selector: string) {
+        logger.info("Clearing the text field")
+        const textField = await page.waitFor(selector);
+        await textField.click({ clickCount: 3 });
+        await this.page.keyboard.press('Backspace');
+    }
+
 }
