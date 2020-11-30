@@ -7,7 +7,8 @@
     "tsc": "tsc",
     "login": "HEADLESS=0 mocha Output/bootstrap.js Output/Main/login.js --timeout 100000",
     "parseyaml": "ts-node ./YamlParser/main.ts",
-    "test": "HEADLESS=0 ts-mocha ./bootstrap.ts ./Main/main.ts ./initTest.ts --sort --timeout 30000 --reporter mochawesome --bail"
+    "test": "HEADLESS=0 ts-mocha ./bootstrap.ts ./Main/main.ts ./initTest.ts --sort --timeout 30000 --reporter mochawesome --bail",
+    "genreport": "ts-node ./Main/report.ts"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "lodash": "^4.17.20",
     "minimist": "^1.2.5",
     "mochawesome": "^6.1.1",
+    "open": "^7.3.0",
     "puppeteer": "^5.2.1",
     "winston": "^3.3.3"
   },
