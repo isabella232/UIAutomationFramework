@@ -2,11 +2,10 @@ import * as winston from "winston"
 
 const logger = winston.createLogger({
     format: winston.format.combine(
-      winston.format.colorize(),
       winston.format.timestamp(),
       winston.format.align(),
       winston.format.printf(
-        info => `${info.level}: ${info.message}`
+        info => `${info.level}: ${info.timestamp}: ${info.message}`
       )
     ),
     transports: [
