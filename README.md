@@ -12,3 +12,45 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+# Requirements
+
+- [NodeJS](https://nodejs.org/en/download/)
+- [TypeScript](https://www.typescriptlang.org/index.html#download-links)
+- [Mocha](https://mochajs.org/)
+
+# Setup
+
+Create .env file or run test with the below values as env variables
+
+```
+AZURE_USERNAME=<Microsoft ID>
+AZURE_PASSWORD=<Azure Password>
+HEADLESS=<0 or 1>
+```
+
+# Run Tests
+
+1. First Transpile TypeScript to CommonJS
+
+    ```
+    $ npm run tsc
+    ```
+
+    or if you have CLI installed
+
+    ```
+    $ tsc
+    ```
+
+2. Login to Azure Portal
+
+    ```
+    $ npm run login -- --username=<user> --password=<pass>
+    ```
+
+3. Run tests
+
+    ```
+    $ npm run test
+    ```

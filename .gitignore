@@ -1,0 +1,10 @@
+mochawesome-report/
+node_modules/
+Output/
+user_data/
+package-lock.json
+.env
+UITesting.log
+Tests/*
+!Tests/InitTest.ts
+Screenshots

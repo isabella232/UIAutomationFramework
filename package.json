@@ -1,0 +1,42 @@
+{
+  "name": "uitest2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "login": "HEADLESS=0 mocha Output/bootstrap.js Output/Main/login.js --timeout 100000",
+    "parseyaml": "ts-node ./YamlParser/main.ts",
+    "test": "HEADLESS=0 ts-mocha ./bootstrap.ts ./Main/main.ts ./initTest.ts --sort --timeout 30000 --reporter mochawesome --bail",
+    "genreport": "ts-node ./Main/report.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/ejs": "^3.0.4",
+    "@types/fs-extra": "^9.0.4",
+    "@types/jquery": "^3.5.0",
+    "@types/js-yaml": "^3.12.5",
+    "@types/lodash": "^4.14.157",
+    "@types/puppeteer": "^3.0.1",
+    "@types/winston": "^2.4.4",
+    "lodash": "^4.17.20",
+    "minimist": "^1.2.5",
+    "mochawesome": "^6.1.1",
+    "open": "^7.3.0",
+    "puppeteer": "^5.2.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "ejs": "^3.1.3",
+    "js-yaml": "^3.14.0",
+    "mocha": "^8.2.1",
+    "ts-mocha": "^7.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}

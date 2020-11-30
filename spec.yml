@@ -1,0 +1,308 @@
+#First element has to be defining the goto page
+
+###############################################
+##PAGE 1 - PreCheck Tab
+- name: Initialization
+  goto: "https://aka.ms/workloadbuilder"
+  projectName: WorkloadBuilderProject
+
+- name: Click the JBoss Migrate Button
+  control: 
+    type: Button
+    name: JBossMigrate Button
+    selector: '[title=\"Migrate JBoss\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
+# - name: Custom Test
+#   custom: 
+#     customTestPath: "../../testing123.ts"
+
+- name: Subscription Dropdown Testing
+  control: 
+    type: Dropdown
+    name: Subscription Dropdown
+    selector: '[aria-label=\"Subscription Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input:
+          - "Workload Builder BVT Testing"
+    test:
+      - testExists
+      - testInput:
+        - "Workload Builder BVT Testing"
+
+- name: Wait for workload dropdown to load
+  control:
+    type: Dropdown
+    name: WorkloadDropdownLoad
+    selector: '[aria-label=\"Workload Dropdown\"]'
+    action:
+      before:
+        - loading 
+
+- name: Create New WorkloadBuilder project
+  control: 
+    type: CreateNewDropdownButton
+    name: CreateNewWB
+    selector: '.fxt-workload-create'
+    dropdownSelector: '[aria-label=\"Workload Dropdown\"]'
+    action: 
+      before:
+        - input:
+          - "sisatia-ui-wb1234"
+    test:
+      - testExists
+
+- name: Test input of workload dropdown
+  control:
+    type: Dropdown
+    name: Workload Dropdown
+    selector: '[aria-label=\"Workload Dropdown\"]'
+    test:
+      - testExists
+      - testInput:
+        - "(New) sisatia-ui-wb1234"
+
+- name: Add a 500 ms delay for new elements to show up
+  utility: 
+    type: delay
+    name: AddDelay
+    duration: 500
+
+- name: Provide input to Version Textbox
+  control:
+    type: Textbox
+    name: VersionTextbox
+    selector: '[aria-label=\"Version Textbox\"]'
+    action:
+      before:
+        - input:
+          - "v1"
+    test:
+      - testExists
+      - testInput:
+        - "v1"
+
+- name: Provide input to Instance Textbox
+  control:
+    type: Textbox
+    name: VersionTextbox
+    selector: '[aria-label=\"Instance Textbox\"]'
+    action:
+      before:
+        - input:
+          - "i1"
+    test:
+      - testExists
+      - testInput:
+        - "i1"
+
+- name: Resource Group Dropdown Testing
+  control: 
+    type: Dropdown
+    name: Resource Dropdown
+    selector: '[aria-label=\"Create new or use existing ResoureceGroup dropdown\"]'
+    action: 
+      before:
+        - input:
+          - "sisatia-df10"
+    test:
+      - testExists
+      - testInput:
+        - "sisatia-df10"
+
+- name: Next Prereq Button
+  control: 
+    type: Button
+    name: NextPrereqButton
+    selector: '[title=\"Next: Migration Package\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testIsDisabled:
+        - false
+      - testExists
+
+# ##############################################
+# #PAGE 2 - Prereq Creation Tab
+
+- name: Check for UI shield to be toggled
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: Storage Account Dropdown
+  control: 
+    type: Dropdown
+    name: StorageAccountDropdown
+    selector: '[aria-label=\"Storage Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input: 
+          - "wblsa79128152339"
+    test:
+      - testExists
+      - testInput:
+        - "wblsa79128152339"
+
+- name: KeyVault Dropdown
+  control: 
+    type: Dropdown
+    name: KeyvaultDropdown
+    selector: '[aria-label=\"KeyVault Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input: 
+          - "wbkv79128152339"
+    test:
+      - testExists
+      - testInput:
+        - "wbkv79128152339"
+
+- name: ApplicationInsights Dropdown
+  control: 
+    type: Dropdown
+    name: ApplicationInsightsDropdown
+    selector: '[aria-label=\"ApplicationInsights Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input: 
+          - "wbappinsights791281523"
+    test:
+      - testExists
+      - testInput:
+        - "wbappinsights791281523"
+
+- name: CreatePrereqButton Test
+  control: 
+    type: Button
+    name: CreatePrereqButton
+    selector: '[title=\"Generate Migration Agent Package\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
+- name: Add a 90*1000 ms delay for prereq to be formed
+  utility: 
+    type: delay
+    name: AddDelay
+    duration: 90000
+
+- name: Check The Prereq Button
+  control: 
+    type: Button
+    name: CheckPrereqButton
+    selector: '[title=\"Check the prerequisites\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
+- name: Wait until the success infobox exists
+  utility:
+    type: waitUntilElementExists
+    name: SuccessInfoBox
+    selector: '.fxc-infoBox-container.fxs-portal-border.fxc-infobox-size-normal.fxt-infoBox-container.fxc-infoBox-Success'
+
+- name: NextVM Tab
+  control: 
+    type: Button
+    name: NextVMTab
+    selector: '[title=\"Next: Select VMs for Migration\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
+
+# ##############################################
+# #PAGE 3 - VM Tab
+
+- name: MigrationProject Dropdown
+  control: 
+    type: Dropdown
+    name: MigrationProject
+    selector: '[aria-label=\"Migration Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input:
+          - "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
+    test:
+      - testExists
+      - testInput:
+        - "wb-common-test-wbvcenter-GA (wb-common-test-migration-GA-wbvcenter)"
+
+- name: Appliance Dropdown
+  control: 
+    type: Dropdown
+    name: ApplianceDropdown
+    selector: '[aria-label=\"Appliance Dropdown\"]'
+    action: 
+      before:
+        - loading
+        - input: 
+          - "WBAppliance"
+    test:
+      - testExists
+      - testInput: 
+        - "WBAppliance"
+
+- name: Check for UI shield to be toggled
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: Virtual Machine Selection
+  control:
+    type: VirtualMachinesGrid
+    name: vmgrid
+    selector: ""
+    action:
+      before:
+        - input:
+          - JbossEAP-16
+
+
+- name: CreateAssessment
+  control: 
+    type: Button
+    name: CreateAssessmentButton
+    selector: '[title=\"Create Assessment\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
+  utility: 
+    type: checkElementExistenceToggled
+    name: UIToggled
+    selector: 'div.fxs-part-blockui-shield'
+
+- name: NextAssessment
+  control: 
+    type: Button
+    name: NextAssessmentButton
+    selector: '[title=\"Next: Deep-Discovery\"]'
+    action: 
+      after:
+        - click
+    test:
+      - testExists
+
