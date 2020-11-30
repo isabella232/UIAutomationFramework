@@ -3,7 +3,6 @@ export { }
 import puppeteer from "puppeteer"
 import expect from "chai"
 import _ from "lodash"
-import * as winston from "winston"
 import dotenv from "dotenv"
 import { logger } from './Logger'
 
