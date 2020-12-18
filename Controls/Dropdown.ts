@@ -21,10 +21,12 @@ export class Dropdown extends BaseControl{
         await Utilities.checkElementExistenceToggled(this.name, selector, this.page);
     }
 
-    public async input(value: string) {
+    public async input(value: string, filter: boolean = true) {
         logger.info(this.name + " dropdown selection!");
         await this.controlElement.click();
-        await this.filterValue(value);
+        if(filter) {
+            await this.filterValue(value);
+        }
         let dropdownItemSelector: string = "span:contains('" + value + "')";
         await Utilities.clickUsingXPath(dropdownItemSelector, this.page);
 
