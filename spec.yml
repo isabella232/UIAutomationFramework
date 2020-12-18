@@ -30,11 +30,12 @@
       before:
         - loading
         - input:
-          - "Workload Builder BVT Testing"
+          - "AI Infra Build"
+          - false
     test:
       - testExists
       - testInput:
-        - "Workload Builder BVT Testing"
+        - "AI Infra Build"
 
 - name: Wait for workload dropdown to load
   control:
