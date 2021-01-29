@@ -11,10 +11,15 @@ export class Button extends BaseControl {
     }
 
     public async click() {
+        //let pageTarget: any = this.page.target(); 
+        //click the button
         await this.controlElement.click();
 
         //Update logging functionality
         logger.info(this.name + " button Clicked!");
+
+        //Check if a new tab has been opened now
+        await super.updatePage();
     }
 
     public async isDisabled() {

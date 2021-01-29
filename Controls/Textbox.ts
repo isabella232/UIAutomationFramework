@@ -14,9 +14,8 @@ export class Textbox extends BaseControl{
      * Provide input to the text field
      */
     public async input(value: string) {
-        await this.utils.inputTextHelper(this.selector, value,true);
+        await this.utils.inputTextHelper(this.selector, value, true);
 
-        //Update logging functionality
         logger.info(this.name + " textbox Update!");
     }
     /**

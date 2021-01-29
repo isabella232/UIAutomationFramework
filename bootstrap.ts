@@ -37,5 +37,5 @@ before(async function () {
 
 // close browser
 after(function () {
-  //   browser.close();
+  //browser.close();
 });
