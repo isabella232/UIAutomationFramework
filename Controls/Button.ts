@@ -11,7 +11,6 @@ export class Button extends BaseControl {
     }
 
     public async click() {
-        //let pageTarget: any = this.page.target(); 
         //click the button
         await this.controlElement.click();
 
