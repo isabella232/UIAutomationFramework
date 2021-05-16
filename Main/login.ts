@@ -3,9 +3,9 @@ import "mocha"
 import dotenv from "dotenv"
 import { assert } from "chai"
 
-import { msLogin } from "../Utilities/MicrosoftLoginPage"
-import { flipkartLogin } from "../Utilities/FlipkartLoginPage"
-import { BaseLogin } from "../Utilities/BaseLoginPage"
+import { msLogin } from "../Login/MicrosoftLoginPage"
+import { flipkartLogin } from "../Login/FlipkartLoginPage"
+import { BaseLogin } from "../Login/BaseLoginPage"
 
 
 dotenv.config()
