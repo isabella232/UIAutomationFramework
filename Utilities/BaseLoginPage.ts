@@ -43,13 +43,17 @@ export class BaseLogin {
             it('Test for successful login', async function () {
                 let exists: boolean = false; 
                 try {
-                    await page.waitFor(selector, { timeout: 2000 });
+                    await page.waitFor(selector, { timeout: this.TIMEOUT_POLL_ELEMENTS_EXISTENCE});
                     exists = true;
                 }
                 catch {
                     exists = false;
                 }
                 if (!successfulloginforexists && exists) {
+                    assert.fail("Login was unsuccessful");
+                }
+                
+                if (!exists) {
                     assert.fail("Login was unsuccessful");
                 }
             });
