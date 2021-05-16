@@ -111,7 +111,7 @@ export class Util {
      */
     public async clearTextField(selector: string) {
         logger.info("Clearing the text field")
-        const textField = await page.waitFor(selector);
+        const textField = await this.page.waitFor(selector);
         await textField.click({ clickCount: 3 });
         await this.page.keyboard.press('Backspace');
     }
