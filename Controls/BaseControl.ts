@@ -1,3 +1,6 @@
+/// <reference path="../bootstrap.ts" />
+import { Util } from "../Utilities/Utils"
+
 export class BaseControl {
 
     /**
@@ -6,7 +9,7 @@ export class BaseControl {
     public name: string
 
     /**
-     * Represents the selector for the element
+     * Represents the css selector for the element
      */
     protected selector: string;
 
@@ -16,11 +19,16 @@ export class BaseControl {
     protected page: any;
 
     /**
+     * Represents the utilities object for the element
+     */
+    protected utils: Util;
+
+    /**
      * Represents the control element object
      */
     public controlElement: any;
 
-    protected TIMEOUT_ELEMENTS_EXISTENCE: number = 5000;
+    protected TIMEOUT_ELEMENTS_EXISTENCE: number = 10000;
 
     protected TIMEOUT_POLL_ELEMENTS_EXISTENCE: number = 5000;
 
@@ -28,6 +36,7 @@ export class BaseControl {
         this.name = name;
         this.selector = selector;
         this.page = page;
+        this.utils = Util.getUtilities(page);
     }
 
     /**
@@ -40,7 +49,7 @@ export class BaseControl {
             this.controlElement = await this.page.waitFor(this.selector);
             return this.controlElement;
         } catch {
-            await this.page.screenshot({path: "Screenshots/" + this.name + "-does-not-exist-screenshot.png"});
+            await this.page.screenshot({ path: "Screenshots/" + this.name + "-does-not-exist-screenshot.png" });
         }
     }
 
@@ -86,5 +95,11 @@ export class BaseControl {
         }
 
         return elementPresent;
+    }
+
+    public async updatePage() {
+        await this.utils.delay(3000);
+        let pages: any = await global.browser.pages();
+        global.page = pages[pages.length - 1];
     }
 }

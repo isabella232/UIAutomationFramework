@@ -1,9 +1,15 @@
 /// <reference path="../bootstrap.ts" />
-import { checkElementExistenceToggled } from "../Utilities/Utils";
+import { Util } from "../Utilities/Utils"
 describe("<%- testName %>", async function () {
+    var <%= utilityName %>: Util;
+    before(async function () {
+        /* Initialization */
+        <%= utilityName %> = Util.getUtilities(page);
+    })
+
     it('CheckElementExistenceToggled', async function () {
         /* All test cases to be performed */
-        await checkElementExistenceToggled("<%= utilityName %>","<%= selector %>", page)
+        await <%= utilityName %>.checkElementExistenceToggled("<%= utilityName %>","<%= selector %>")
     })
 
     <%_ if (nextTestPath) { _%>

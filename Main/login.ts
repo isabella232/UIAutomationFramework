@@ -3,36 +3,50 @@ import "mocha"
 import dotenv from "dotenv"
 import { assert } from "chai"
 
-import { msLogin } from "../Utilities/MicrosoftLoginPage"
+import { msLogin } from "../Login/MicrosoftLoginPage"
+import { flipkartLogin } from "../Login/FlipkartLoginPage"
+import { BaseLogin } from "../Login/BaseLoginPage"
 
 
 dotenv.config()
 
 
-describe("Login using Microsoft Credentials", () => {
+describe("Login using Credentials", () => {
     let page: any;
+    let login: BaseLogin;
 
     before(async function () {
 
-        const username: string = process.env.AZURE_USERNAME || "";
-        const password: string = process.env.AZURE_PASSWORD || "";
+        const username: string = process.env.USERNAME || "";
+        const password: string = process.env.PASSWORD || "";
 
-        assert(username.length != 0, "Username cannot be empty")
-        assert(password.length != 0, "Password cannot be empty")
+        assert(username.length != 0, "Username cannot be empty");
+        assert(password.length != 0, "Password cannot be empty");
 
         page = await browser.newPage();
-        await page.goto('https://aka.ms/workloadbuilder');
 
-        let login = new msLogin(username, password);
-        await login.loginAuthPage(page);
+        switch(process.env.LOGIN) {
+            case "microsoft":  {
+                login = new msLogin(page, username, password);
+                break;
+            }
+
+            case "flipkart": {
+                login = new flipkartLogin(page, username, password);
+                break;
+            }
+
+            default: {
+                //log error
+            }
+
+        }
+
+        await login.login();
     })
-
-    after(async function () {
-        await browser.close();
-    })
-
-    it('Login to Microsoft', async function () {
-        await page.waitFor('.fxs-topbar-internal.fxs-internal-full')
+    
+    it('Login', async function () {
+        await login.testLogin(page);
     });
 })
 
