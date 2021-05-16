@@ -55,7 +55,7 @@
     action: 
       before:
         - input:
-          - "sisatia-ui-wb1234"
+          - "abc-ui-wb1234"
     test:
       - testExists
 
@@ -67,7 +67,7 @@
     test:
       - testExists
       - testInput:
-        - "(New) sisatia-ui-wb1234"
+        - "(New) abc-ui-wb1234"
 
 - name: Add a 500 ms delay for new elements to show up
   utility: 
@@ -111,11 +111,11 @@
     action: 
       before:
         - input:
-          - "sisatia-df10"
+          - "abc-df10"
     test:
       - testExists
       - testInput:
-        - "sisatia-df10"
+        - "abc-df10"
 
 - name: Next Prereq Button
   control: 

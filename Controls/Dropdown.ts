@@ -16,14 +16,14 @@ export class Dropdown extends BaseControl{
 
         //Likely to have this selector also as user input/resource file for extensibility
         //todo: sisatia
-        let selector: string = ".azc-disabled" + this.selector;
+        let selector: string = CommonSelectors.Common.disabled + this.selector;
         await this.utils.checkElementExistenceToggled(this.name, selector);
     }
 
     public async input(value: string, filter: boolean = true) {
         logger.info(this.name + " dropdown selection!");
         await this.controlElement.click();
-        
+
         if(filter) {
             await this.filterValue(value);
         }
