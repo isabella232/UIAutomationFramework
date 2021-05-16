@@ -3,48 +3,6 @@
   goto: "https://www.flipkart.com"
   projectName: Flipkart Automation Suite
 
-
-###FLIPKART LOGIN
-
-# - name: Email Textbox
-#   control: 
-#     type: Textbox
-#     name: emailtextbox
-#     selector: "form > div > input[type='text']"
-#     action: 
-#       before:
-#         - input:
-#           - "simratsatia@gmail.com"
-#     test:
-#       - testExists
-
-# - name: Password Textbox
-#   control: 
-#     type: Textbox
-#     name: password
-#     selector: "input[type='password']"
-#     action: 
-#       before:
-#         - input:
-#           - "****"
-#     test:
-#       - testExists
-
-# - name: Click the login button
-#   control: 
-#     type: Button
-#     name: LoginButton
-#     selector: "button > span"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-
-
-
-#####################################
-
 - name: Search Textbox
   control: 
     type: Textbox
@@ -53,7 +11,7 @@
     action: 
       before:
         - input:
-          - "Skipping rope"
+          - "IPhone charger"
     test:
       - testExists
 
@@ -68,119 +26,24 @@
     test:
       - testExists
 
-- name: Click the search button
+- name: Click the desired product item
   control: 
     type: Button
-    name: Searchbutton
-    selector: "a[title='Arrowmax Best in class Freestyle Speed Skipping Rope']"
+    name: IphoneProduct
+    selector: "a[title='Apple MD836HN/A 12W USB Power Adapter']"
     action: 
       after:
         - click
     test:
       - testExists
 
-- name: Click the search button
+- name: Click the buy now button
   control: 
     type: Button
-    name: Searchbutton
+    name: BuyNow Button
     selector: "form > button"
     action: 
       after:
         - click
     test:
       - testExists
-
-
-# - name: Click the search button
-#   control: 
-#     type: Button
-#     name: SearchButton
-#     selector: "input[type='submit']"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-
-# - name: Click the rope button
-#   control: 
-#     type: Button
-#     name: Ropebutton
-#     selector: ".a-size-base-plus.a-color-base.a-text-normal"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-
-# - name: Click the buynow button
-#   control: 
-#     type: Button
-#     name: BuyNow
-#     selector: '#buy-now-button'
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-         
-
-# Login
-# - name: Click the login button
-#   control: 
-#     type: Button
-#     name: Login Button
-#     selector: "#nav-link-accountList"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-
-# - name: Email ID
-#   control: 
-#     type: Textbox
-#     name: EmailID
-#     selector: "input[name='email']"
-#     action: 
-#       before:
-#         - input:
-#           - "simratsatia@gmail.com"
-#     test:
-#       - testExists
-
-# - name: Click continue
-#   control: 
-#     type: Button
-#     name: Continue
-#     selector: "#continue"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists
-
-# - name: Email ID
-#   control: 
-#     type: Textbox
-#     name: EmailID
-#     selector: "input[name='password']"
-#     action: 
-#       before:
-#         - input:
-#           - "****"
-#     test:
-#       - testExists
-
-
-# - name: Login
-#   control: 
-#     type: Button
-#     name: Login
-#     selector: "#signInSubmit"
-#     action: 
-#       after:
-#         - click
-#     test:
-#       - testExists     
-
