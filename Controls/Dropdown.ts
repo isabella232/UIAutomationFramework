@@ -23,7 +23,8 @@ export class Dropdown extends BaseControl{
     public async input(value: string, filter: boolean = true) {
         logger.info(this.name + " dropdown selection!");
         await this.controlElement.click();
-        if (filter) {
+        
+        if(filter) {
             await this.filterValue(value);
         }
         let dropdownItemSelector: string = "span:contains('" + value + "')";
