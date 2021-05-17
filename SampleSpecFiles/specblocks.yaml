@@ -1,0 +1,63 @@
+#First element has to be defining the goto page
+
+#Required
+- name: #name (eg: "Initialization")
+  goto: #target url page to start the automation (eg: "https://aka.ms/workloadbuilder")
+  projectName: #Name of the project (eg: "Workload Builder Automation Suite")
+
+
+#Test Block 1: CONTROL TYPE
+- name: #name of the test suite (eg: "Click the JBoss Migrate Button")
+
+  #control/custom/util
+  #Following is the example for "control" element
+  control: 
+    type: #Type of control element eg ("Button", "Dropdown", "Textbox"...). You can find them at ./Controls class
+    name: # name of the element (eg: "JBossMigrate Button")
+    selector: # css selector to identify the element eg: ('[title=\"Migrate JBoss\"]')
+
+    #Action block defines what needs to be done before and after running the test
+    action: 
+      #Before block defining what needs to be done before running the test
+      before :
+        - #Action 1 You will find these actions same as the name of the functions present in in ./Controls/<control_type> for ease of use
+        - #Action 2:
+          - #Input 1 to function for Action 2
+          - #Input 2 to function for Action 2
+
+      #After block defining what needs to be done after running the test
+      after:
+        - #Action 1 You will find these actions same as the name of the functions present in ./Controls/<control_type> for ease of use
+        - #Action 2:
+          - #Input 1 to function for Action 2
+          - #Input 2 to function for Action 2
+          
+    test:
+      - #Test 1: You will find these actions same as the name of the functions for ease of use ./TestControls/<control_type> for use of use
+      - #Test 2:
+        - #Input 1 to function for Test 2
+        - #Input 2 to function for Test 2
+
+#Test Block 2: Utility Type
+
+- name: #name of the test suite (eg: "Add a 90*1000 ms delay" ) 
+  #Control/custom/util
+  #Following is the example for "utility" element
+  utility: 
+    type: #Type of utility element eg ("delay", "checkElementExistenceToggled"...). You can find them as functions in ./Utilities/utils.ts 
+    name: # name of the element (eg: " Add delay")
+
+    #Duration is the example for delay element
+    duration: #Duration of time to add delay for (eg: "90000")
+
+#Test Block 3: Custom Type
+- name: #name of the test suite (eg: "Custom Test")
+  #Control/custom/util
+  #Following is the example for "custom" element
+  custom: 
+    customTestPath: #Relative path to custom written test case (eg: "../../testing123.ts")
+
+
+
+
+
