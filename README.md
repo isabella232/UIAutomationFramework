@@ -12,7 +12,7 @@ This is a fully extensible automation tool offering the capability to perform e2
 * Extensibility to add controls and include/update their functions
 * Simple yaml spec file to auto-generate test cases
 * Templates for test-cases provided in ejs format
-* Automate logging into websites and use saved context for subsequent sessions
+* Automate login into websites and use saved context for subsequent sessions
 * Capability to write and add custom test suites in typescript using mocha/chai to include in the automation in addition to auto-generated tests. 
 * Functionality to take screen-shots for failed test cases, which would help in debugging
 
