@@ -49,13 +49,11 @@ export class BaseLogin {
                 catch {
                     exists = false;
                 }
-                if (!successfulloginforexists && exists) {
+
+                if ((successfulloginforexists !== exists)) {
                     assert.fail("Login was unsuccessful");
                 }
-                
-                if (!exists) {
-                    assert.fail("Login was unsuccessful");
-                }
+
             });
         })
 
