@@ -1,0 +1,90 @@
+#First element has to be defining the goto page
+- name: Initialization
+  goto: "https://access.redhat.com/management/subscriptions/product/RC1116415/systems"
+  projectName: RedHat entitlement certificate download
+
+
+- name: Provide input to username
+  control:
+    type: Textbox
+    name: UsernameTextbox
+    selector: "input[id='username']"
+    action:
+      before:
+        - input:
+          - process.env.USERNAME
+
+- name: Click the next button
+  control:
+    type: Button
+    name: selectMachine
+    selector: "button[id='login-show-step2']"
+    action: 
+      after:
+        - click
+
+- name: Provide input to password
+  control:
+    type: Textbox
+    name: PasswordTextbox
+    selector: "input[id='password']"
+    action:
+      before:
+        - input:
+          - process.env.PASSWORD
+
+- name: Click the login button
+  control:
+    type: Button
+    name: loginButton
+    selector: "input[id='kc-login']"
+    action: 
+      after:
+        - click
+
+- name: Provide input to filterbox
+  control:
+    type: Textbox
+    name: FilterBox
+    selector: "input[id='product_subscription_systems_filter']"
+    action:
+      before:
+        - input:
+          - "eastus-rhua"
+    test:
+      - testExists
+
+- name: Add a 1000 * 1000 ms delay
+  utility: 
+    type: delay
+    name: AddDelay
+    duration: 1000
+
+
+- name: Click the given system
+  control:
+    type: Button
+    name: selectMachine
+    selector: "td[class='sorting_1'] > a"
+    action: 
+      after:
+        - click
+
+- name: Click on the subscriptions tab
+  control:
+    type: Button
+    name: selectSubscriptions
+    selector: "ul[class='nav nav-faux-tabs'] > li >a[href$='subscriptions']"
+    action: 
+      after:
+        - click
+
+- name: Click on download certificate
+  control:
+    type: Button
+    name: downloadCertificate
+    selector: "a[id='entitlement_cert_zip']"
+    action: 
+      after:
+        - click
+      
