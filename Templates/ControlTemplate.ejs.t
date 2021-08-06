@@ -22,6 +22,11 @@
     }
 
     getArgumentFormat = function(argument) {
+
+        if(argument.startsWith('process.env.')) {
+            return argument;
+        }
+
         if ((typeof argument) == "string") {
             return "\'" + argument + "\'";
         }
